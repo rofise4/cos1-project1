@@ -424,39 +424,35 @@ void Pawn::getmovesp1(chessBoard& board1)
     int y = GetY();
     //move testing, taking x and y coordinates
     //checking at coordinates +/- from x and y to test the different directions
-    Pieces* front = board1.getPiece(x, y - 1);
-    Pieces* dLeft = board1.getPiece(x - 1, y - 1);
-    Pieces* dRight = board1.getPiece(x + 1, y - 1);
+
+
+
     //if unocupied, highlight it, also checking within board bounds.
-    if (front == nullptr && y < 5)
+    if (y - 1 > -1)
     {
-        board1.setOccupied(x, y - 1, true);
-        //highlight square
-    }
-    else
-    {
-        //not front
-    }
-    if (dLeft != nullptr || dRight != nullptr)
-    {
-        if (dLeft != nullptr && x > -1)
+        Pieces* front = board1.getPiece(x, y - 1);
+        if (front == nullptr)
         {
-            //check isp2
+            board1.setOccupied(x, y - 1, true);
+            //highlight square
+        }
+    }
+    if (x - 1 > -1 && y - 1 > -1)
+    {
+        Pieces* dLeft = board1.getPiece(x - 1, y - 1);
+        if (dLeft != nullptr)
+        {
             if (dLeft->isP2())
             {
                 board1.setOccupied(x - 1, y - 1, true);
                 //highlight square
             }
-            else
-            {
-                //not valid move
-            }
         }
-        else
-        {
-            //no available moves
-        }
-        if (dRight != nullptr && x < 5)
+    }
+    if(y-1 > -1 && x + 1 < 5)
+    {
+        Pieces* dRight = board1.getPiece(x + 1, y - 1);
+        if (dRight != nullptr)
         {
             //check isp2
             if (dRight->isP2())
@@ -464,19 +460,7 @@ void Pawn::getmovesp1(chessBoard& board1)
                 board1.setOccupied(x + 1, y - 1, true);
                 //highlight square
             }
-            else
-            {
-                //no available moves
-            }
         }
-        else
-        {
-            //no available moves
-        }
-    }
-    else
-    {
-        //no moves available
     }
 }
 void Rook::getmovesp1(chessBoard& board1)
@@ -495,6 +479,7 @@ void Rook::getmovesp1(chessBoard& board1)
             if (front->isP2())
             {
                 board1.setOccupied(x, fy, true);
+                break;
             }
             else
             {
@@ -514,6 +499,7 @@ void Rook::getmovesp1(chessBoard& board1)
             if (dLeft->isP2())
             {
                 board1.setOccupied(lx, y, true);
+                break;
             }
             else
             {
@@ -533,6 +519,7 @@ void Rook::getmovesp1(chessBoard& board1)
             if (dRight->isP2())
             {
                 board1.setOccupied(rx, y, true);
+                break;
             }
             else
             {
@@ -552,6 +539,7 @@ void Rook::getmovesp1(chessBoard& board1)
             if (back->isP2())
             {
                 board1.setOccupied(x, by, true);
+                break;
             }
             else
             {
