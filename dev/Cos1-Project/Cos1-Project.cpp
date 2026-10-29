@@ -245,6 +245,7 @@ public:
     {
         return 'q';
     }
+    void getmovesp1(chessBoard& board1);
 private:
 };
 class King : public Pieces
@@ -716,6 +717,131 @@ void Bishop::getmovesp1(chessBoard& board1)
             board1.setOccupied(bx, by, true);
         }
         else if (backR->isP2())
+        {
+            board1.setOccupied(bx, by, true);
+            break;
+        }
+        else
+            break;
+    }
+}
+void Queen::getmovesp1(chessBoard& board1)
+{
+    int x = GetX();
+    int y = GetY();
+    for (int bx = x + 1, by = y - 1; bx < 5 && by > -1; bx++, by--)
+    {
+        Pieces* frontR = board1.getPiece(bx, by);
+        if (frontR == nullptr)
+        {
+            board1.setOccupied(bx, by, true);
+        }
+        else if (frontR->isP2())
+        {
+            board1.setOccupied(bx, by, true);
+            break;
+        }
+        else
+            break;
+    }
+    for (int bx = x - 1, by = y + 1; bx > -1 && by < 5; bx--, by++)
+    {
+        Pieces* backL = board1.getPiece(bx, by);
+        if (backL == nullptr)
+        {
+            board1.setOccupied(bx, by, true);
+        }
+        else if (backL->isP2())
+        {
+            board1.setOccupied(bx, by, true);
+            break;
+        }
+        else
+            break;
+    }
+    for (int bx = x - 1, by = y - 1; bx > -1 && by > -1; bx--, by--)
+    {
+        Pieces* frontL = board1.getPiece(bx, by);
+        if (frontL == nullptr)
+        {
+            board1.setOccupied(bx, by, true);
+        }
+        else if (frontL->isP2())
+        {
+            board1.setOccupied(bx, by, true);
+            break;
+        }
+        else
+            break;
+    }
+    for (int bx = x + 1, by = y + 1; bx < 5 && by < 5; bx++, by++)
+    {
+        Pieces* backR = board1.getPiece(bx, by);
+        if (backR == nullptr)
+        {
+            board1.setOccupied(bx, by, true);
+        }
+        else if (backR->isP2())
+        {
+            board1.setOccupied(bx, by, true);
+            break;
+        }
+        else
+            break;
+    }
+    for(int by = y +1, bx = x; by < 5; by++)
+    {
+        Pieces* back = board1.getPiece(bx, by);
+        if (back == nullptr)
+        {
+            board1.setOccupied(bx, by, true);
+        }
+        else if (back->isP2())
+        {
+            board1.setOccupied(bx, by, true);
+            break;
+        }
+        else
+            break;
+    }
+    for (int by = y - 1, bx = x; by > -1; by--)
+    {
+        Pieces* front = board1.getPiece(bx, by);
+        if (front == nullptr)
+        {
+            board1.setOccupied(bx, by, true);
+        }
+        else if (front->isP2())
+        {
+            board1.setOccupied(bx, by, true);
+            break;
+        }
+        else
+            break;
+    }
+    for(int bx = x +1, by = y; bx < 5; bx++)
+    {
+        Pieces* right = board1.getPiece(bx, by);
+        if (right == nullptr)
+        {
+            board1.setOccupied(bx, by, true);
+        }
+        else if (right->isP2())
+        {
+            board1.setOccupied(bx, by, true);
+            break;
+        }
+        else
+            break;
+    }
+    for (int bx = x - 1, by = y; bx > -1; bx--)
+    {
+        Pieces* left = board1.getPiece(bx, by);
+        if (left == nullptr)
+        {
+            board1.setOccupied(bx, by, true);
+        }
+        else if (left->isP2())
         {
             board1.setOccupied(bx, by, true);
             break;
