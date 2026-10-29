@@ -89,15 +89,18 @@ class Pieces
 {
 public:
     void Isp2(bool p2)
+        //setting player 2
     {
         isp2 = p2;
     }
     void getmovesp1()
+        //getters for p1 move
     {
         int x = GetX();
         int y = GetY();
     }
     bool isP2()
+        //checking if a piece is player 2
     {
         return isp2;
     }
@@ -112,10 +115,14 @@ public:
 
     virtual void draw()
     {
+        //setting board dimensions for drawing, accounting for height and width of drawn squares
         int tempx = (GetX() * 5) + 15;
         int tempy = (GetY() * 3) + 4;
         if ((GetY() + GetX()) % 2 == 0)
         {
+            /*alternating black and white pieces using mod 2 to ofset grid
+            draws square with back ground color white or balck and then draws the symbol for any assosiated pieces
+            pieces check for p1 or p2 and set there own background color*/
             setPosition(tempx, tempy + 1);
             if (isp2)
             {
@@ -159,6 +166,7 @@ public:
 
     }
     void initializex(int newx, int newy)
+        //getters/setters for board dimensions in drawing and handling curor placement
     {
         x = newx;
         y = newy;
@@ -172,6 +180,7 @@ public:
         return y;
     }
 private:
+    //starting cursor position and player two default place holder
     bool isp2 = false;
     int x = 0;
     int y = 0;
@@ -186,6 +195,7 @@ private:
 class Pawn : public Pieces
 {
 public:
+    //get symbol returns p for pawn, bottom of each gets a forwards decloration for calling moves once defined later
     char GetSymbol()
     {
         return 'p';
@@ -197,6 +207,7 @@ private:
 class Rook : public Pieces
 {
 public:
+    //returning r for rook
     char GetSymbol()
     {
         return 'r';
@@ -207,6 +218,7 @@ private:
 class Knight : public Pieces
 {
 public:
+    //n for night
     char GetSymbol()
     {
         return 'n';
@@ -217,6 +229,7 @@ private:
 class Bishop : public Pieces
 {
 public:
+    //returning b for bishop
     char GetSymbol()
     {
         return 'b';
@@ -226,6 +239,7 @@ private:
 class Queen : public Pieces
 {
 public:
+    //returning q for queen
     char GetSymbol()
     {
         return 'q';
@@ -235,6 +249,7 @@ private:
 class King : public Pieces
 {
 public:
+    //returning k for king
     char GetSymbol()
     {
         return 'k';
@@ -248,13 +263,16 @@ public:
     {
         Initialize();
     }
+    //initialize is just creating board and not populating yet and assigning colors to squares
     void Initialize()
     {
         int x;
         int y;
-        for (int i = 0; i < 8; i++)
+        /*i and j act as the x and y coordinates of the board. [I][J] starts as nullptr with occupied status as false. Essentially during the
+        draw initilization this just says nothing is here and is creating the blank board to build uppon*/
+        for (int i = 0; i < 5; i++)
         {
-            for (int j = 0; j < 8; j++)
+            for (int j = 0; j < 5; j++)
             {
                 squares[i][j] = nullptr;
                 //i and j match regular index value, use in draw loop instead for coordinate multiplication
@@ -267,11 +285,16 @@ public:
         {
             for (int j = 0; j < 8; j++)
             {
+                /*using mod 2 on the combined value just to create an alternating sequence between white and black squares because
+                every new square will have a coordinate point that is offset by one in value*/
                 if ((i + j) % 2 == 0)
                 {
                     if (squares[i][j] == nullptr)
                     {
+                        //calling setwhitesquare to set as white
                         SetWhiteSquare();
+                        /*I am scaling positions of squares based on width and hight of drawing then setting cout "   " to shape the initial square
+                        the background color is set using set white square above*/
                         x = (coordinatex[j] * 5) + 15;
                         y = (coordinatey[i] * 3) + 4;
                         setPosition(x, y);
@@ -286,6 +309,7 @@ public:
                 {
                     if (squares[i][j] == nullptr)
                     {
+                        //same as set white, this just work in reverse to set bg color to black
                         SetBlackSquare();
                         x = (coordinatex[j] * 5) + 15;
                         y = (coordinatey[i] * 3) + 4;
@@ -319,9 +343,9 @@ public:
     {
         int x;
         int y;
-        for (int i = 0; i < 8; i++)
+        for (int i = 0; i < 5; i++)
         {
-            for (int j = 0; j < 8; j++)
+            for (int j = 0; j < 5; j++)
             {
                 if (occupied[i][j] == true)
                 {
@@ -395,9 +419,12 @@ void Pawn::getmovesp1(chessBoard& board1)
 {
     int x = GetX();
     int y = GetY();
+    //move testing, taking x and y coordinates
+    //checking at coordinates +/- from x and y to test the different directions
     Pieces* front = board1.getPiece(x, y - 1);
     Pieces* dLeft = board1.getPiece(x - 1, y - 1);
     Pieces* dRight = board1.getPiece(x + 1, y - 1);
+    //if unocupied, highlight it, also checking within board bounds.
     if (front == nullptr && y < 8)
     {
         board1.setOccupied(x, y - 1, true);
@@ -673,14 +700,14 @@ private:
 };
 void game::setupPieces()
 {
-    board1.placeP(&pl1p1, 0, 6);
-    board1.placeP(&pl1p2, 1, 6);
-    board1.placeP(&pl1p3, 2, 6);
-    board1.placeP(&pl1p4, 3, 6);
-    board1.placeP(&pl1p5, 4, 6);
-    board1.placeP(&pl1p6, 5, 6);
-    board1.placeP(&pl1p7, 6, 6);
-    board1.placeP(&pl1p8, 7, 6);
+    board1.placeP(&pl1p1, 0, 3);
+    board1.placeP(&pl1p2, 1, 3);
+    board1.placeP(&pl1p3, 2, 3);
+    board1.placeP(&pl1p4, 3, 3);
+    board1.placeP(&pl1p5, 4, 3);
+    //board1.placeP(&pl1p6, 5, 6);
+   // board1.placeP(&pl1p7, 6, 6);
+  //  board1.placeP(&pl1p8, 7, 6);
     board1.placeP(&pl2p1, 0, 1);
     pl2p1.Isp2(true);
     board1.placeP(&pl2p2, 1, 1);
@@ -691,35 +718,35 @@ void game::setupPieces()
     pl2p4.Isp2(true);
     board1.placeP(&pl2p5, 4, 1);
     pl2p5.Isp2(true);
-    board1.placeP(&pl2p6, 5, 1);
-    pl2p6.Isp2(true);
-    board1.placeP(&pl2p7, 6, 1);
-    pl2p7.Isp2(true);
-    board1.placeP(&pl2p8, 7, 1);
-    pl2p8.Isp2(true);
-    board1.placeP(&p1r1, 0, 7);
-    board1.placeP(&p1r2, 7, 7);
+    //board1.placeP(&pl2p6, 5, 1);
+    //pl2p6.Isp2(true);
+    //board1.placeP(&pl2p7, 6, 1);
+    //pl2p7.Isp2(true);
+    //board1.placeP(&pl2p8, 7, 1);
+    //pl2p8.Isp2(true);
+    board1.placeP(&p1r1, 0, 4);
+   // board1.placeP(&p1r2, 4, 4);
     board1.placeP(&p2r1, 0, 0);
     p2r1.Isp2(true);
-    board1.placeP(&p2r2, 7, 0);
-    p2r2.Isp2(true);
-    board1.placeP(&p1kn1, 1, 7);
-    board1.placeP(&p1kn2, 6, 7);
+   // board1.placeP(&p2r2, 4, 0);
+    //p2r2.Isp2(true);
+    board1.placeP(&p1kn1, 1, 4);
+    //board1.placeP(&p1kn2, 3, 4);
     board1.placeP(&p2kn1, 1, 0);
     p2kn1.Isp2(true);
-    board1.placeP(&p2kn2, 6, 0);
-    p2kn2.Isp2(true);
-    board1.placeP(&p1b1, 2, 7);
-    board1.placeP(&p1b2, 5, 7);
+    //board1.placeP(&p2kn2, 3, 0);
+    //p2kn2.Isp2(true);
+    board1.placeP(&p1b1, 2, 4);
+    //board1.placeP(&p1b2, 2, 4);
     board1.placeP(&p2b1, 2, 0);
     p2b1.Isp2(true);
-    board1.placeP(&p2b2, 5, 0);
-    p2b2.Isp2(true);
-    board1.placeP(&p1q, 3, 7);
-    board1.placeP(&p2q, 4, 0);
+    //board1.placeP(&p2b2, 5, 0);
+    //p2b2.Isp2(true);
+    board1.placeP(&p1q, 3, 4);
+    board1.placeP(&p2q, 3, 0);
     p2q.Isp2(true);
-    board1.placeP(&p1k, 4, 7);
-    board1.placeP(&p2k, 3, 0);
+    board1.placeP(&p1k, 4, 4);
+    board1.placeP(&p2k, 4, 0);
     p2k.Isp2(true);
     pl1p1.draw();
     pl1p2.draw();
@@ -757,34 +784,34 @@ void game::setupPieces()
 void game::run()
 {
     setupPieces();
-    Sleep(1000);
-    board1.placeP(&pl2p1, 1, 5);
-    pl2p1.Isp2(true);
-    board1.placeP(&pl1p5, 3, 5);
-    Sleep(1000);
-    pl1p3.getmovesp1(board1);
-    Sleep(1000);
-    board1.DrawBoard();
-    Sleep(1000);
-    board1.resetOccupied();
-    board1.DrawBoard();
-    Sleep(1000);
-    p1r1.getmovesp1(board1);
-    board1.DrawBoard();
-    Sleep(1000);
-    board1.resetOccupied();
-    board1.DrawBoard();
-    Sleep(1000);
-    board1.placeP(&p1r1, 4, 4);
-    board1.DrawBoard();
-    Sleep(1000);
-    p1r1.getmovesp1(board1);
-    board1.DrawBoard();
-    Sleep(1000);
-    board1.resetOccupied();
-    board1.placeP(&p1kn1, 5, 3);
-    p1kn1.getmovesp1(board1);
-    board1.DrawBoard();
+   // Sleep(1000);
+    //board1.placeP(&pl2p1, 1, 5);
+    //pl2p1.Isp2(true);
+    //board1.placeP(&pl1p5, 3, 5);
+    //Sleep(1000);
+    //pl1p3.getmovesp1(board1);
+    //Sleep(1000);
+    //board1.DrawBoard();
+    //Sleep(1000);
+    //board1.resetOccupied();
+    //board1.DrawBoard();
+    //Sleep(1000);
+    //p1r1.getmovesp1(board1);
+    //board1.DrawBoard();
+    //Sleep(1000);
+    //board1.resetOccupied();
+    //board1.DrawBoard();
+    //Sleep(1000);
+    //board1.placeP(&p1r1, 4, 4);
+    //board1.DrawBoard();
+    //Sleep(1000);
+    //p1r1.getmovesp1(board1);
+    //board1.DrawBoard();
+    //Sleep(1000);
+    //board1.resetOccupied();
+    //board1.placeP(&p1kn1, 5, 3);
+    //p1kn1.getmovesp1(board1);
+    //board1.DrawBoard();
 
 
 
