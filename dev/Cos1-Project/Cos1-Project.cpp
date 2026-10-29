@@ -425,7 +425,7 @@ void Pawn::getmovesp1(chessBoard& board1)
     Pieces* dLeft = board1.getPiece(x - 1, y - 1);
     Pieces* dRight = board1.getPiece(x + 1, y - 1);
     //if unocupied, highlight it, also checking within board bounds.
-    if (front == nullptr && y < 8)
+    if (front == nullptr && y < 4)
     {
         board1.setOccupied(x, y - 1, true);
         //highlight square
@@ -453,7 +453,7 @@ void Pawn::getmovesp1(chessBoard& board1)
         {
             //no available moves
         }
-        if (dRight != nullptr && x < 8)
+        if (dRight != nullptr && x < 4)
         {
             //check isp2
             if (dRight->isP2())
@@ -518,7 +518,7 @@ void Rook::getmovesp1(chessBoard& board1)
             }
         }
     }
-    for (int rx = x + 1; rx < 8; rx++)
+    for (int rx = x + 1; rx < 4; rx++)
     {
         Pieces* dRight = board1.getPiece(rx, y);
         if (dRight == nullptr)
@@ -537,7 +537,7 @@ void Rook::getmovesp1(chessBoard& board1)
             }
         }
     }
-    for (int by = y + 1; by < 7; by++)
+    for (int by = y + 1; by < 4; by++)
     {
         Pieces* back = board1.getPiece(x, by);
         if (back == nullptr)
@@ -561,7 +561,7 @@ void Knight::getmovesp1(chessBoard& board1)
 {
     int x = GetX();
     int y = GetY();
-    if (x + 1 < 8 && y - 2 > -1)
+    if (x + 1 < 4 && y - 2 > -1)
     {
         Pieces* frontR = board1.getPiece(x + 1, y - 2);
         if (frontR == nullptr)
@@ -585,7 +585,7 @@ void Knight::getmovesp1(chessBoard& board1)
             board1.setOccupied(x - 1, y - 2, true);
         }
     }
-    if (x + 1 < 8 && y + 2 < 8)
+    if (x + 1 < 4 && y + 2 < 4)
     {
         Pieces* backR = board1.getPiece(x + 1, y + 2);
         if (backR == nullptr)
@@ -621,7 +621,7 @@ void Knight::getmovesp1(chessBoard& board1)
             board1.setOccupied(x + 2, y - 1, true);
         }
     }
-    if (x + 2 < 8 && y + 1 < 8)
+    if (x + 2 < 4 && y + 1 < 4)
     {
         Pieces* rightDown = board1.getPiece(x + 2, y + 1);
         if (rightDown == nullptr)
@@ -645,7 +645,7 @@ void Knight::getmovesp1(chessBoard& board1)
             board1.setOccupied(x - 2, y - 1, true);
         }
     }
-    if (x - 2 > -1 && y + 1 < 8)
+    if (x - 2 > -1 && y + 1 < 4)
     {
         Pieces* leftDown = board1.getPiece(x - 2, y + 1);
         if (leftDown == nullptr)
