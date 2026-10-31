@@ -951,6 +951,10 @@ public:
     {
         currentPlayer = (currentPlayer == 1) ? 2 : 1;
     }
+    int getCurrentPlayer()const
+    {
+        return currentPlayer;
+    }
 private:
     //starting player value
     int currentPlayer = 1;
