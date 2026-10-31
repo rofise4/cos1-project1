@@ -235,7 +235,7 @@ public:
     {
         return 'b';
     }
-    void getmovesp1(chessBoard& board1);
+    void getmovesp1(chessBoard& board1, int currentPlayer);
 private:
 };
 class Queen : public Pieces
@@ -700,7 +700,7 @@ void Knight::getmovesp1(chessBoard& board1, int currentPlayer)
         }
     }
 }
-void Bishop::getmovesp1(chessBoard& board1)
+void Bishop::getmovesp1(chessBoard& board1, int currentPlayer)
 {
     int x = GetX();
     int y = GetY();
@@ -711,7 +711,12 @@ void Bishop::getmovesp1(chessBoard& board1)
             {
                 board1.setOccupied(bx, by, true);
             }
-            else if (frontR->isP2())
+            else if (frontR->isP2() && currentPlayer == 1)
+            {
+                board1.setOccupied(bx, by, true);
+                break;
+            }
+            else if (!frontR->isP2() && currentPlayer == 2)
             {
                 board1.setOccupied(bx, by, true);
                 break;
@@ -726,7 +731,12 @@ void Bishop::getmovesp1(chessBoard& board1)
         {
             board1.setOccupied(bx, by, true);
         }
-        else if (backL->isP2())
+        else if (backL->isP2() && currentPlayer == 1)
+        {
+            board1.setOccupied(bx, by, true);
+            break;
+        }
+        else if (!backL->isP2() && currentPlayer == 2)
         {
             board1.setOccupied(bx, by, true);
             break;
@@ -741,7 +751,12 @@ void Bishop::getmovesp1(chessBoard& board1)
         {
             board1.setOccupied(bx, by, true);
         }
-        else if (frontL->isP2())
+        else if (frontL->isP2() && currentPlayer == 1)
+        {
+            board1.setOccupied(bx, by, true);
+            break;
+        }
+        else if (!frontL->isP2() && currentPlayer == 2)
         {
             board1.setOccupied(bx, by, true);
             break;
@@ -756,7 +771,12 @@ void Bishop::getmovesp1(chessBoard& board1)
         {
             board1.setOccupied(bx, by, true);
         }
-        else if (backR->isP2())
+        else if (backR->isP2() && currentPlayer == 1)
+        {
+            board1.setOccupied(bx, by, true);
+            break;
+        }
+        else if (!backR->isP2() && currentPlayer == 2)
         {
             board1.setOccupied(bx, by, true);
             break;
