@@ -213,7 +213,7 @@ public:
     {
         return 'r';
     }
-    void getmovesp1(chessBoard& board1);
+    void getmovesp1(chessBoard& board1, int currentPlayer);
 private:
 };
 class Knight : public Pieces
@@ -464,7 +464,7 @@ void Pawn::getmovesp1(chessBoard& board1)
         }
     }
 }
-void Rook::getmovesp1(chessBoard& board1)
+void Rook::getmovesp1(chessBoard& board1, int currentPlayer)
 {
     int x = GetX();
     int y = GetY();
@@ -477,15 +477,18 @@ void Rook::getmovesp1(chessBoard& board1)
         }
         else if (front != nullptr)
         {
-            if (front->isP2())
+            if (front->isP2() && currentPlayer == 1)
+            {
+                board1.setOccupied(x, fy, true);
+                break;
+            }
+            else if (!front->isP2() && currentPlayer == 2)
             {
                 board1.setOccupied(x, fy, true);
                 break;
             }
             else
-            {
                 break;
-            }
         }
     }
     for (int lx = x - 1; lx > -1; lx--)
@@ -497,7 +500,12 @@ void Rook::getmovesp1(chessBoard& board1)
         }
         else if (dLeft != nullptr)
         {
-            if (dLeft->isP2())
+            if (dLeft->isP2() && currentPlayer == 1)
+            {
+                board1.setOccupied(lx, y, true);
+                break;
+            }
+            else if (!dLeft->isP2() && currentPlayer == 2)
             {
                 board1.setOccupied(lx, y, true);
                 break;
@@ -517,7 +525,12 @@ void Rook::getmovesp1(chessBoard& board1)
         }
         else if (dRight != nullptr)
         {
-            if (dRight->isP2())
+            if (dRight->isP2() && currentPlayer == 1)
+            {
+                board1.setOccupied(rx, y, true);
+                break;
+            }
+            else if (!dRight->isP2() && currentPlayer == 2)
             {
                 board1.setOccupied(rx, y, true);
                 break;
@@ -537,7 +550,12 @@ void Rook::getmovesp1(chessBoard& board1)
         }
         else if (back != nullptr)
         {
-            if (back->isP2())
+            if (back->isP2() && currentPlayer == 1)
+            {
+                board1.setOccupied(x, by, true);
+                break;
+            }
+            else if (!back->isP2() && currentPlayer == 2)
             {
                 board1.setOccupied(x, by, true);
                 break;
