@@ -224,7 +224,7 @@ public:
     {
         return 'n';
     }
-    void getmovesp1(chessBoard& board1);
+    void getmovesp1(chessBoard& board1, int currentPlayer);
 private:
 };
 class Bishop : public Pieces
@@ -567,7 +567,7 @@ void Rook::getmovesp1(chessBoard& board1, int currentPlayer)
         }
     }
 }
-void Knight::getmovesp1(chessBoard& board1)
+void Knight::getmovesp1(chessBoard& board1, int currentPlayer)
 {
     int x = GetX();
     int y = GetY();
@@ -578,7 +578,11 @@ void Knight::getmovesp1(chessBoard& board1)
         {
             board1.setOccupied(x + 1, y - 2, true);
         }
-        else if (frontR->isP2())
+        else if (frontR->isP2() && currentPlayer == 1)
+        {
+            board1.setOccupied(x + 1, y - 2, true);
+        }
+        else if (!frontR->isP2() && currentPlayer == 2)
         {
             board1.setOccupied(x + 1, y - 2, true);
         }
@@ -590,7 +594,11 @@ void Knight::getmovesp1(chessBoard& board1)
         {
             board1.setOccupied(x - 1, y - 2, true);
         }
-        else if (frontL->isP2())
+        else if (frontL->isP2() && currentPlayer == 1)
+        {
+            board1.setOccupied(x - 1, y - 2, true);
+        }
+        else if (!frontL->isP2() && currentPlayer == 2)
         {
             board1.setOccupied(x - 1, y - 2, true);
         }
@@ -602,7 +610,11 @@ void Knight::getmovesp1(chessBoard& board1)
         {
             board1.setOccupied(x + 1, y + 2, true);
         }
-        else if (backR->isP2())
+        else if (backR->isP2() && currentPlayer == 1)
+        {
+            board1.setOccupied(x + 1, y + 2, true);
+        }
+        else if (!backR->isP2() && currentPlayer == 2)
         {
             board1.setOccupied(x + 1, y + 2, true);
         }
@@ -614,7 +626,11 @@ void Knight::getmovesp1(chessBoard& board1)
         {
             board1.setOccupied(x - 1, y + 2, true);
         }
-        else if (backL->isP2())
+        else if (backL->isP2() && currentPlayer == 1)
+        {
+            board1.setOccupied(x - 1, y + 2, true);
+        }
+        else if (!backL->isP2() && currentPlayer == 2)
         {
             board1.setOccupied(x - 1, y + 2, true);
         }
@@ -626,7 +642,11 @@ void Knight::getmovesp1(chessBoard& board1)
         {
             board1.setOccupied(x + 2, y - 1, true);
         }
-        else if (rightUp->isP2())
+        else if (rightUp->isP2() && currentPlayer == 1)
+        {
+            board1.setOccupied(x + 2, y - 1, true);
+        }
+        else if (!rightUp->isP2() && currentPlayer == 2)
         {
             board1.setOccupied(x + 2, y - 1, true);
         }
@@ -638,7 +658,11 @@ void Knight::getmovesp1(chessBoard& board1)
         {
             board1.setOccupied(x + 2, y + 1, true);
         }
-        else if (rightDown->isP2())
+        else if (rightDown->isP2() && currentPlayer == 1)
+        {
+            board1.setOccupied(x + 2, y + 1, true);
+        }
+        else if (!rightDown->isP2() && currentPlayer == 2)
         {
             board1.setOccupied(x + 2, y + 1, true);
         }
@@ -650,7 +674,11 @@ void Knight::getmovesp1(chessBoard& board1)
         {
             board1.setOccupied(x - 2, y - 1, true);
         }
-        else if (leftUp->isP2())
+        else if (leftUp->isP2() && currentPlayer == 1)
+        {
+            board1.setOccupied(x - 2, y - 1, true);
+        }
+        else if (!leftUp->isP2() && currentPlayer == 2)
         {
             board1.setOccupied(x - 2, y - 1, true);
         }
@@ -662,7 +690,11 @@ void Knight::getmovesp1(chessBoard& board1)
         {
             board1.setOccupied(x - 2, y + 1, true);
         }
-        else if (leftDown->isP2())
+        else if (leftDown->isP2() && currentPlayer == 1)
+        {
+            board1.setOccupied(x - 2, y + 1, true);
+        }
+        else if (!leftDown->isP2() && currentPlayer == 2)
         {
             board1.setOccupied(x - 2, y + 1, true);
         }
