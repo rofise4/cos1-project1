@@ -201,7 +201,7 @@ public:
     {
         return 'p';
     }
-    void getmovesp1(chessBoard& board1);
+    void getmovesp1(chessBoard& board1, int currentPlayer);
 
 private:
 };
@@ -419,7 +419,7 @@ private:
     int coordinatey[5];
     int coordinatex[5];
 };
-void Pawn::getmovesp1(chessBoard& board1)
+void Pawn::getmovesp1(chessBoard& board1, int currentPlayer)
 {
     int x = GetX();
     int y = GetY();
@@ -429,37 +429,77 @@ void Pawn::getmovesp1(chessBoard& board1)
 
 
     //if unocupied, highlight it, also checking within board bounds.
-    if (y - 1 > -1)
+    if (currentPlayer == 1)
     {
-        Pieces* front = board1.getPiece(x, y - 1);
-        if (front == nullptr)
+        if (y - 1 > -1)
         {
-            board1.setOccupied(x, y - 1, true);
-            //highlight square
-        }
-    }
-    if (x - 1 > -1 && y - 1 > -1)
-    {
-        Pieces* dLeft = board1.getPiece(x - 1, y - 1);
-        if (dLeft != nullptr)
-        {
-            if (dLeft->isP2())
+            Pieces* front = board1.getPiece(x, y - 1);
+            if (front == nullptr)
             {
-                board1.setOccupied(x - 1, y - 1, true);
+                board1.setOccupied(x, y - 1, true);
                 //highlight square
             }
         }
-    }
-    if(y-1 > -1 && x + 1 < 5)
-    {
-        Pieces* dRight = board1.getPiece(x + 1, y - 1);
-        if (dRight != nullptr)
+        if (x - 1 > -1 && y - 1 > -1)
         {
-            //check isp2
-            if (dRight->isP2())
+            Pieces* dLeft = board1.getPiece(x - 1, y - 1);
+            if (dLeft != nullptr)
             {
-                board1.setOccupied(x + 1, y - 1, true);
+                if (dLeft->isP2())
+                {
+                    board1.setOccupied(x - 1, y - 1, true);
+                    //highlight square
+                }
+            }
+        }
+        if (y - 1 > -1 && x + 1 < 5)
+        {
+            Pieces* dRight = board1.getPiece(x + 1, y - 1);
+            if (dRight != nullptr)
+            {
+                //check isp2
+                if (dRight->isP2())
+                {
+                    board1.setOccupied(x + 1, y - 1, true);
+                    //highlight square
+                }
+            }
+        }
+    }
+    else if (currentPlayer == 2)
+    {
+        if (y + 1 < 5)
+        {
+            Pieces* front = board1.getPiece(x, y + 1);
+            if (front == nullptr)
+            {
+                board1.setOccupied(x, y + 1, true);
                 //highlight square
+            }
+        }
+        if (x - 1 > -1 && y + 1 < 5)
+        {
+            Pieces* dLeft = board1.getPiece(x - 1, y + 1);
+            if (dLeft != nullptr)
+            {
+                if (!dLeft->isP2())
+                {
+                    board1.setOccupied(x - 1, y + 1, true);
+                    //highlight square
+                }
+            }
+        }
+        if (y + 1 < 5 && x + 1 < 5)
+        {
+            Pieces* dRight = board1.getPiece(x + 1, y + 1);
+            if (dRight != nullptr)
+            {
+                //check isp2
+                if (!dRight->isP2())
+                {
+                    board1.setOccupied(x + 1, y + 1, true);
+                    //highlight square
+                }
             }
         }
     }
