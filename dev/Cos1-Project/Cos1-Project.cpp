@@ -71,6 +71,7 @@ void colorBG()
         cout << string(80, ' ');
     }
 }
+
 void setPosition(int x, int y)
 {
     HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -945,7 +946,14 @@ class game
 public:
     void setupPieces();
     void run();
+    //adding switch to change between player 1 and two.
+    void SwitchPlayer()
+    {
+        currentPlayer = (currentPlayer == 1) ? 2 : 1;
+    }
 private:
+    //starting player value
+    int currentPlayer = 1;
     chessBoard board1;
     Pawn pl1p1;
     Pawn pl1p2;
