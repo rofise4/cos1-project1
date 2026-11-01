@@ -925,6 +925,10 @@ void game::setupPieces()
 void game::run()
 {
     setupPieces();
+    SwitchPlayer();
+    board1.placeP(&p2kn1, 2, 3);
+    p2kn1.getmovesp1(board1, currentPlayer);
+    board1.DrawBoard();
     // Sleep(1000);
      //board1.placeP(&pl2p1, 1, 5);
      //pl2p1.Isp2(true);
