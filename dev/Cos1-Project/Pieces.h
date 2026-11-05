@@ -8,7 +8,7 @@ class Pieces
 {
 public:
 	void Isp2(bool p2);
-	void getmovesp1();
+	virtual void getmovesp1(chessBoard& board1, int currentPlayer);
 	bool isP2();
 	virtual char GetSymbol();
 	virtual void move();

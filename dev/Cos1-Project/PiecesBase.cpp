@@ -8,11 +8,9 @@
     {
         isp2 = p2;
     }
-    void Pieces::getmovesp1()
-        //getters for p1 move
+    void Pieces::getmovesp1(chessBoard& board1, int currentPlayer)
     {
-        int x = GetX();
-        int y = GetY();
+        //
     }
     bool Pieces::isP2()
         //checking if a piece is player 2

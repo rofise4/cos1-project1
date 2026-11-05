@@ -76,10 +76,7 @@ void game::run()
     initializeMouse(hInput);
     bool gameRunning = true;
     setupPieces();
-    SwitchPlayer();
-    board1.placeP(&p2kn1, 2, 3);
-    p2kn1.getmovesp1(board1, currentPlayer);
-    board1.DrawBoard();
+
     while (gameRunning)
     {
         Turn();
