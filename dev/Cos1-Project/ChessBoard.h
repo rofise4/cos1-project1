@@ -20,10 +20,15 @@ public:
 
     void placeP(Pieces* piece, int newx, int newy);
 
-    void setOccupied(int newx, int newy, bool selected);
+    void setOccupied(int newx, int newy, bool highlighted);
 
     void resetOccupied();
+    void seclected(int newx, int newy, bool highlighted);
+
+    void resetSelected();
+
 private:
+    bool highlighted[5][5] = {};
     bool occupied[5][5];
     Pieces* squares[5][5];
     int coordinatey[5];

@@ -56,6 +56,16 @@ void SetP1ColorBlack()
     HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(console, FOREGROUND_RED | FOREGROUND_GREEN);
 }
+void SetP2ColorPink()
+{
+    HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(console,BACKGROUND_BLUE | BACKGROUND_RED |FOREGROUND_GREEN);
+}
+void SetP1ColorPink()
+{
+    HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(console, BACKGROUND_BLUE | BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN);
+}
 void Pink()
 {
     HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -69,7 +79,21 @@ void colorBG()
         std::cout << std::string(80, ' ');
     }
 }
-
+void Yellow()
+{
+    HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(console, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_INTENSITY);
+}
+void SetP1ColorYellow()
+{
+    HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(console, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_INTENSITY);
+}
+void SetP2ColorYellow()
+{
+    HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(console, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_INTENSITY | FOREGROUND_GREEN);
+}
 void setPosition(int x, int y)
 {
     HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);

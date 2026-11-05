@@ -12,7 +12,7 @@ public:
 	bool isP2();
 	virtual char GetSymbol();
 	virtual void move();
-	virtual void draw();
+	virtual void draw(bool pink = false, bool selected = false);
 	void initializex(int newx, int newy);
 	int GetX();
 	int GetY();

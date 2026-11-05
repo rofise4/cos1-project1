@@ -102,6 +102,18 @@
                     setPosition(x, y + 2);
                     std::cout << "     ";
                 }
+                else if (highlighted[i][j] == true)
+                {
+                    Yellow();
+                    x = (coordinatex[j] * 5) + 15;
+                    y = (coordinatey[i] * 3) + 4;
+                    setPosition(x, y);
+                    std::cout << "     ";
+                    setPosition(x, y + 1);
+                    std::cout << "     ";
+                    setPosition(x, y + 2);
+                    std::cout << "     ";
+                }
                 else if ((i + j) % 2 == 0)
                 {
                     SetWhiteSquare();
@@ -126,9 +138,12 @@
                     setPosition(x, y + 2);
                     std::cout << "     ";
                 }
+
                 if (squares[i][j] != nullptr)
                 {
-                    squares[i][j]->draw();
+
+                    squares[i][j]->draw(occupied[i][j], highlighted[i][j]);
+
                 }
             }
         }
@@ -137,6 +152,20 @@
     {
         squares[newy][newx] = piece;
         piece->initializex(newx, newy);
+    }
+    void chessBoard::seclected(int newx, int newy, bool clicked)
+    {
+        highlighted[newy][newx] = clicked;
+    }
+    void chessBoard::resetSelected()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                highlighted[i][j] = false;
+            }
+        }
     }
     void chessBoard::setOccupied(int newx, int newy, bool selected)
     {

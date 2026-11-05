@@ -28,12 +28,42 @@
         std::cout << "it did not load correctly";
     }
 
-    void Pieces::draw()
+    void Pieces::draw(bool pink, bool selected)
     {
         //setting board dimensions for drawing, accounting for height and width of drawn squares
         int tempx = (GetX() * 5) + 15;
         int tempy = (GetY() * 3) + 4;
-        if ((GetY() + GetX()) % 2 == 0)
+        if (selected)
+        {
+            if (isp2)
+            {
+                SetP2ColorYellow();
+                setPosition(tempx, tempy + 1);
+                std::cout << "  " << GetSymbol() << "  ";
+            }
+            else
+            {
+                SetP1ColorYellow();
+                setPosition(tempx, tempy + 1);
+                std::cout << "  " << GetSymbol() << "  ";
+            }
+        }
+        else if (pink)
+        {
+            if (isp2)
+            {
+                SetP2ColorPink();
+                setPosition(tempx, tempy + 1);
+                std::cout << "  " << GetSymbol() << "  ";
+            }
+            else
+            {
+                SetP1ColorPink();
+                setPosition(tempx, tempy + 1);
+                std::cout << "  " << GetSymbol() << "  ";
+            }
+        }
+        else if ((GetY() + GetX()) % 2 == 0)
         {
             /*alternating black and white pieces using mod 2 to ofset grid
             draws square with back ground color white or balck and then draws the symbol for any assosiated pieces
