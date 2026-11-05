@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Chess.cpp" />
+    <ClCompile Include="ChessBoard.cpp" />
     <ClCompile Include="ConsoleGraphics.cpp" />
     <ClCompile Include="Cos1-Project.cpp" />
     <ClCompile Include="PiecesMovement.cpp" />
@@ -147,6 +148,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Chess.h" />
+    <ClInclude Include="ChessBoard.h" />
     <ClInclude Include="ConsoleGraphics.h" />
     <ClInclude Include="Pieces.h" />
   </ItemGroup>

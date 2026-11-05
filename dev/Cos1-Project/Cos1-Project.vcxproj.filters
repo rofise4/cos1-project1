@@ -30,6 +30,9 @@
     <ClCompile Include="PiecesBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ChessBoard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Chess.h">
@@ -39,6 +42,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Pieces.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ChessBoard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
