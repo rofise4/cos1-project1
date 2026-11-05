@@ -4,14 +4,29 @@
 COORD game::getPieceSelected(HANDLE hInput)
 {
 	bool valid = false;
+	bool movesExsist = false;
 	COORD test;
 	int player = getCurrentPlayer();
-	while (valid == false)
+	while (movesExsist == false)
 	{
-		board1.resetSelected();
-		test = getClicks(hInput);
+		while (valid == false)
+		{
+			board1.resetSelected();
+			test = getClicks(hInput);
 
-		valid = game::validatePlayer(player, test);
+			valid = game::validatePlayer(player, test);
+		}
+		Pieces* piece = board1.getPiece(test.X, test.Y);
+		piece->getmovesp1(board1, getCurrentPlayer());
+		movesExsist = board1.validateOccupied();
+		if (movesExsist == false)
+		{
+			board1.resetOccupied();
+			board1.resetSelected();
+			valid = false;
+		}
+		else
+			break;
 	}
 	board1.seclected(test.X, test.Y, true);
 	setPosition(3, 30);
@@ -21,6 +36,7 @@ COORD game::getPieceSelected(HANDLE hInput)
 }
 void game::Turn()
 {
+
 	board1.resetOccupied();
 	board1.resetSelected();
 	HANDLE hInput = GetStdHandle(STD_INPUT_HANDLE);

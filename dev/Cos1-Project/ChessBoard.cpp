@@ -190,4 +190,19 @@
             }
         }
     }
+    bool chessBoard::validateOccupied()
+    {
+        bool moveExsists = false;
+        for (int i = 0; i < 5; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                if (occupied[i][j] == true)
+                {
+                    moveExsists = true;
+                }
+            }
+        }
+        return moveExsists;
+    }
 

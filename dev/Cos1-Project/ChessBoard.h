@@ -26,7 +26,7 @@ public:
     void seclected(int newx, int newy, bool highlighted);
 
     void resetSelected();
-
+    bool validateOccupied();
 private:
     bool highlighted[5][5] = {};
     bool occupied[5][5];
