@@ -140,3 +140,45 @@ void game::capture(COORD highlighted)
     }
 
 }
+COORD game::getP1KingLocation()
+{
+    COORD King = { -1,-1 };
+
+
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    Pieces* piece = board1.getPiece(i, j);
+                    if (piece == &p1k)
+                    {
+                        King.X = i;
+                        King.Y = j;
+                        return King;
+                    }
+                }
+            }
+
+    return King;
+}
+COORD game::getP2KingLocation()
+{
+    COORD King = { -1, -1 };
+
+
+    for (int i = 0; i < 5; i++)
+    {
+        for (int j = 0; j < 5; j++)
+        {
+            Pieces* piece = board1.getPiece(i, j);
+            if (piece == &p2k)
+            {
+                King.X = i;
+                King.Y = j;
+                return King;
+            }
+        }
+    }
+
+    return King;
+}
