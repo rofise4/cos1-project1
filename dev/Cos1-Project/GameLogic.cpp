@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "ChessBoard.h"
 
 void game::setupPieces()
 {
@@ -90,4 +91,34 @@ void game::SwitchPlayer()
 int game::getCurrentPlayer()const
 {
     return currentPlayer;
+}
+bool game::validatePlayer(int currentPlayer, COORD highlighted)
+{
+    bool valid = false;
+    Pieces* piece = board1.getPiece(highlighted.X, highlighted.Y);
+    if (piece != nullptr)
+    {
+        if (piece->isP2())
+        {
+            if (currentPlayer == 2)
+            {
+                valid = true;
+            }
+            else
+                //not nessasary because its initialized to false, but its easier to follow later
+                valid = false;
+        }
+        else
+        {
+            if (currentPlayer == 1)
+            {
+                valid = true;
+            }
+            else
+            {
+                valid = false;
+            }
+        }
+    }
+    return valid;
 }

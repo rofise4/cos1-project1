@@ -3,11 +3,21 @@
 
 COORD game::getPieceSelected(HANDLE hInput)
 {
-	board1.resetSelected();
-	COORD test = getClicks(hInput);
+	bool valid = false;
+	COORD test;
+	int player = getCurrentPlayer();
+	while (valid == false)
+	{
+		board1.resetSelected();
+		test = getClicks(hInput);
+
+		valid = game::validatePlayer(player, test);
+	}
 	board1.seclected(test.X, test.Y, true);
+	setPosition(3, 30);
 	std::cout << test.X << " " << test.Y;
 	return test;
+
 }
 void game::Turn()
 {

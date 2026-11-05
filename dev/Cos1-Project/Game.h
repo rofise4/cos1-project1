@@ -15,7 +15,7 @@ public:
     bool initializeMouse(HANDLE hInput);
     void Turn();
     COORD getPieceSelected(HANDLE hInput);
-
+    bool validatePlayer(int currentPlayer, COORD highlighted);
     //defenition in game loop, but will be defined bellow in line with my run and setup functions for orginization in one file
     //coordinate return type, handle is acting as the bounds to console and hInpute is what binds it to the console input stream
     //coord returns a pair of x,y together. since i developed my board using [x][y] for storing positions between my pieces it allows for easier plugging into my existing code
