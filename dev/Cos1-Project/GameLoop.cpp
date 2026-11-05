@@ -1,7 +1,24 @@
 #include "Game.h"
 #include <Windows.h>
 
+bool game::initializeMouse(HANDLE hInput)
+{
+    //DWORD is unsigned 32 bit type for storing modes, this is to initialize mode in that type
+    DWORD mode;
 
+    //read the mode settings &mode and check to make sure its a non zero
+    if (!GetConsoleMode(hInput, &mode))
+    {
+        //if cannot read console settings immediately fails command
+        return false;
+    }
+    //enables mouse input events, enables extended console setting input modes needed for quick edit |= switches flags on and | combines them
+    mode |= ENABLE_MOUSE_INPUT | ENABLE_EXTENDED_FLAGS;
+    //disables quick edit with not opporator
+    mode &= ~ENABLE_QUICK_EDIT_MODE;
+    //set the console modes, then check to make sure the returning value is a non zero
+    return SetConsoleMode(hInput, mode) != 0;
+}
 COORD game::getClicks(HANDLE hInput)
 {
     //input record is storing what input takes place, key stroke, mouse click, position etc. its saving it to a variable called input.
@@ -55,11 +72,18 @@ COORD game::getClicks(HANDLE hInput)
 
 void game::run()
 {
+    HANDLE hInput = GetStdHandle(STD_INPUT_HANDLE);
+    initializeMouse(hInput);
+    bool gameRunning = true;
     setupPieces();
     SwitchPlayer();
     board1.placeP(&p2kn1, 2, 3);
     p2kn1.getmovesp1(board1, currentPlayer);
     board1.DrawBoard();
+    while (gameRunning)
+    {
+        Turn();
+    }
     // Sleep(1000);
      //board1.placeP(&pl2p1, 1, 5);
      //pl2p1.Isp2(true);

@@ -12,6 +12,9 @@ public:
     void SwitchPlayer();
 
     int getCurrentPlayer()const;
+    bool initializeMouse(HANDLE hInput);
+    void Turn();
+    COORD getPieceSelected(HANDLE hInput);
 
     //defenition in game loop, but will be defined bellow in line with my run and setup functions for orginization in one file
     //coordinate return type, handle is acting as the bounds to console and hInpute is what binds it to the console input stream

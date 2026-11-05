@@ -146,6 +146,7 @@
     <ClCompile Include="GameLoop.cpp" />
     <ClCompile Include="PiecesMovement.cpp" />
     <ClCompile Include="PiecesBase.cpp" />
+    <ClCompile Include="Turn.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChessBoard.h" />
