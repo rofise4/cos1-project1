@@ -4,7 +4,7 @@
 #include <Windows.h>
 #include <cstdlib>
 #include <vector>
-using namespace std;
+
 void SetConsoleSize();
 void SetWhiteSquare();
 void SetBlackSquare();
@@ -43,7 +43,7 @@ public:
     }
     virtual void move()
     {
-        cout << "it did not load correctly";
+        std::cout << "it did not load correctly";
     }
 
     virtual void draw()
@@ -60,15 +60,15 @@ public:
             if (isp2)
             {
                 SetP2ColorWhite();
-                cout << "  ";
-                cout << GetSymbol();
+                std::cout << "  ";
+                std::cout << GetSymbol();
                 SetWhiteSquare();
             }
             else
             {
                 SetP1ColorWhite();
-                cout << "  ";
-                cout << GetSymbol();
+                std::cout << "  ";
+                std::cout << GetSymbol();
                 SetWhiteSquare();
             }
         }
@@ -76,24 +76,24 @@ public:
         {
             SetBlackSquare();
             setPosition(tempx, tempy);
-            cout << "     ";
+            std::cout << "     ";
             setPosition(tempx, tempy + 1);
-            cout << "  ";
+            std::cout << "  ";
             if (isp2)
             {
                 SetP2ColorBlack();
-                cout << GetSymbol();
+                std::cout << GetSymbol();
                 SetBlackSquare();
             }
             else
             {
                 SetP1ColorBlack();
-                cout << GetSymbol();
+                std::cout << GetSymbol();
                 SetBlackSquare();
             }
-            cout << "  ";
+            std::cout << "  ";
             setPosition(tempx, tempy + 2);
-            cout << "     ";
+            std::cout << "     ";
 
         }
 
@@ -235,11 +235,11 @@ public:
                         x = (coordinatex[j] * 5) + 15;
                         y = (coordinatey[i] * 3) + 4;
                         setPosition(x, y);
-                        cout << "     ";
+                        std::cout << "     ";
                         setPosition(x, y + 1);
-                        cout << "     ";
+                        std::cout << "     ";
                         setPosition(x, y + 2);
-                        cout << "     ";
+                        std::cout << "     ";
                     }
                 }
                 else
@@ -251,11 +251,11 @@ public:
                         x = (coordinatex[j] * 5) + 15;
                         y = (coordinatey[i] * 3) + 4;
                         setPosition(x, y);
-                        cout << "     ";
+                        std::cout << "     ";
                         setPosition(x, y + 1);
-                        cout << "     ";
+                        std::cout << "     ";
                         setPosition(x, y + 2);
-                        cout << "     ";
+                        std::cout << "     ";
                     }
                 }
             }
@@ -290,11 +290,11 @@ public:
                     x = (coordinatex[j] * 5) + 15;
                     y = (coordinatey[i] * 3) + 4;
                     setPosition(x, y);
-                    cout << "     ";
+                    std::cout << "     ";
                     setPosition(x, y + 1);
-                    cout << "     ";
+                    std::cout << "     ";
                     setPosition(x, y + 2);
-                    cout << "     ";
+                    std::cout << "     ";
                 }
                 else if ((i + j) % 2 == 0)
                 {
@@ -302,11 +302,11 @@ public:
                     x = (coordinatex[j] * 5) + 15;
                     y = (coordinatey[i] * 3) + 4;
                     setPosition(x, y);
-                    cout << "     ";
+                    std::cout << "     ";
                     setPosition(x, y + 1);
-                    cout << "     ";
+                    std::cout << "     ";
                     setPosition(x, y + 2);
-                    cout << "     ";
+                    std::cout << "     ";
                 }
                 else
                 {
@@ -314,11 +314,11 @@ public:
                     x = (coordinatex[j] * 5) + 15;
                     y = (coordinatey[i] * 3) + 4;
                     setPosition(x, y);
-                    cout << "     ";
+                    std::cout << "     ";
                     setPosition(x, y + 1);
-                    cout << "     ";
+                    std::cout << "     ";
                     setPosition(x, y + 2);
-                    cout << "     ";
+                    std::cout << "     ";
                 }
                 if (squares[i][j] != nullptr)
                 {

@@ -4,7 +4,7 @@
 #include <Windows.h>
 #include <cstdlib>
 #include <vector>
-using namespace std;
+
 void SetConsoleSize()
 {
     HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -68,7 +68,7 @@ void colorBG()
     SetPinkBackground();
     for (int i = 0; i < 80; i++)
     {
-        cout << string(80, ' ');
+        std::cout << std::string(80, ' ');
     }
 }
 
