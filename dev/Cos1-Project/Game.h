@@ -23,6 +23,7 @@ public:
     void capture(COORD highlighted);
     COORD getP1KingLocation();
     COORD getP2KingLocation();
+    bool testCheckSelf(int currentPlayer);
 private:
     //starting player value
     int currentPlayer = 1;
