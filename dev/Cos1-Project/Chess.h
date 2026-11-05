@@ -409,3 +409,4 @@ private:
     King p1k;
     King p2k;
 };
+void Menu();
