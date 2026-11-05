@@ -142,10 +142,13 @@
     <ClCompile Include="Chess.cpp" />
     <ClCompile Include="ConsoleGraphics.cpp" />
     <ClCompile Include="Cos1-Project.cpp" />
+    <ClCompile Include="PiecesMovement.cpp" />
+    <ClCompile Include="PiecesBase.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Chess.h" />
     <ClInclude Include="ConsoleGraphics.h" />
+    <ClInclude Include="Pieces.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
