@@ -2,6 +2,7 @@
 #include "ConsoleGraphics.h"
 #include <string>
 #include <iostream>
+#include "Game.h"
 void SetConsoleSize()
 {
     HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);

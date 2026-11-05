@@ -1,7 +1,8 @@
 #include "Pieces.h"
-#include "Chess.h"
+
 #include "ConsoleGraphics.h"
 #include <iostream>
+#include "ChessBoard.h"
 
 void Pawn::getmovesp1(chessBoard& board1, int currentPlayer)
 {

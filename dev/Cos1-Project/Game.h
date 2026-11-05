@@ -1,12 +1,7 @@
 #pragma once
-#include <string>
-#include <iostream>
-#include <Windows.h>
-#include <cstdlib>
-#include <vector>
-#include "ConsoleGraphics.h"
-#include "Pieces.h"
 #include "ChessBoard.h"
+#include "Pieces.h"
+#include <Windows.h>
 
 class game
 {
@@ -14,15 +9,11 @@ public:
     void setupPieces();
     void run();
     //adding switch to change between player 1 and two.
-    void SwitchPlayer()
-    {
-        currentPlayer = (currentPlayer == 1) ? 2 : 1;
-    }
-    int getCurrentPlayer()const
-    {
-        return currentPlayer;
-    }
-    //defenition in game, but will be defined bellow in line with my run and setup functions for orginization in one file
+    void SwitchPlayer();
+
+    int getCurrentPlayer()const;
+
+    //defenition in game loop, but will be defined bellow in line with my run and setup functions for orginization in one file
     //coordinate return type, handle is acting as the bounds to console and hInpute is what binds it to the console input stream
     //coord returns a pair of x,y together. since i developed my board using [x][y] for storing positions between my pieces it allows for easier plugging into my existing code
     COORD getClicks(HANDLE hInput);
@@ -63,4 +54,3 @@ private:
     King p1k;
     King p2k;
 };
-void Menu();

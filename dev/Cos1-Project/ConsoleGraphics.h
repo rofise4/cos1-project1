@@ -1,5 +1,6 @@
 #pragma once
 #include <Windows.h>
+
 void SetConsoleSize();
 void SetWhiteSquare();
 void SetBlackSquare();
