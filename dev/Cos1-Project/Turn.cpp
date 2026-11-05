@@ -31,4 +31,17 @@ void game::Turn()
 	Pieces* piece = board1.getPiece(highlighted.X, highlighted.Y);
 	piece->getmovesp1(board1, getCurrentPlayer());
 	board1.DrawBoard();
+	capture(highlighted);
+	board1.DrawBoard();
+	board1.resetOccupied();
+	board1.resetSelected();
+	board1.DrawBoard();
+	SwitchPlayer();
+	//setPosition(0, 20);
+	/*if (board1.getPiece(highlighted.X, highlighted.Y) == nullptr)
+	{
+		std::cout << "Old square is empty no memory issues";
+	}
+	else
+		std::cout << "Huston, we have a problem";*/
 }

@@ -122,3 +122,21 @@ bool game::validatePlayer(int currentPlayer, COORD highlighted)
     }
     return valid;
 }
+void game::capture(COORD highlighted)
+{
+    bool canMove = false;
+    bool pass;
+    COORD compare;
+    HANDLE hInput = GetStdHandle(STD_INPUT_HANDLE);
+    while (canMove == false)
+    {
+        compare = game::getClicks(hInput);
+        if (board1.getOccupied(compare.X, compare.Y) == true)
+        {
+            Pieces* piece = board1.getPiece(highlighted.X, highlighted.Y);
+            board1.placeP(piece, compare.X, compare.Y);
+            canMove = true;
+        }
+    }
+
+}

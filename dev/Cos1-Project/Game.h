@@ -20,6 +20,7 @@ public:
     //coordinate return type, handle is acting as the bounds to console and hInpute is what binds it to the console input stream
     //coord returns a pair of x,y together. since i developed my board using [x][y] for storing positions between my pieces it allows for easier plugging into my existing code
     COORD getClicks(HANDLE hInput);
+    void capture(COORD highlighted);
 private:
     //starting player value
     int currentPlayer = 1;

@@ -150,6 +150,15 @@
     }
     void chessBoard::placeP(Pieces* piece, int newx, int newy)
     {
+        int oldX = piece->GetX();
+        int oldY = piece->GetY();
+        if (oldX >= 0 && oldX < 5 && oldY >= 0 && oldY < 5)
+        {
+            if (squares[oldY][oldX] = piece)
+            {
+                squares[oldY][oldX] = nullptr;
+            }
+        }
         squares[newy][newx] = piece;
         piece->initializex(newx, newy);
     }
