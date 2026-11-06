@@ -31,6 +31,14 @@ void game::setupPieces()
     // board1.placeP(&p1r2, 4, 4);
     board1.placeP(&p2r1, 0, 0);
     p2r1.Isp2(true);
+    Pieces* piece = board1.getPiece(0, 0);
+    setPosition(1, 20);
+    if (piece == &p2r1)
+    {
+        std::cout << "The rook is here just not drawn";
+    }
+    else
+        std::cout << "Huston we have another problem";
     // board1.placeP(&p2r2, 4, 0);
      //p2r2.Isp2(true);
     board1.placeP(&p1kn1, 1, 4);
@@ -68,6 +76,14 @@ void game::setupPieces()
      // pl2p7.draw();
      // pl2p8.draw();
     p1r1.draw();
+    Pieces* piece2 = board1.getPiece(0, 0);
+    setPosition(1, 24);
+    if (piece2 == &p2r1)
+    {
+        std::cout << "The rook is here just not drawn";
+    }
+    else
+        std::cout << "Huston we have another problem";
     // p1r2.draw();
     p2r1.draw();
     // p2r2.draw();
@@ -83,6 +99,7 @@ void game::setupPieces()
     p2q.draw();
     p1k.draw();
     p2k.draw();
+
 }
 void game::SwitchPlayer()
 {
