@@ -32,7 +32,7 @@ void game::setupPieces()
     board1.placeP(&p2r1, 0, 0);
     p2r1.Isp2(true);
     Pieces* piece = board1.getPiece(0, 0);
-    setPosition(1, 20);
+    setPosition(1, 21);
     if (piece == &p2r1)
     {
         std::cout << "The rook is here just not drawn";
@@ -59,46 +59,46 @@ void game::setupPieces()
     board1.placeP(&p1k, 4, 4);
     board1.placeP(&p2k, 4, 0);
     p2k.Isp2(true);
-    pl1p1.draw();
-    pl1p2.draw();
-    pl1p3.draw();
-    pl1p4.draw();
-    pl1p5.draw();
+    //pl1p1.draw();
+    //pl1p2.draw();
+    //pl1p3.draw();
+    //pl1p4.draw();
+    //pl1p5.draw();
     //  pl1p6.draw();
      // pl1p7.draw();
      // pl1p8.draw();
-    pl2p1.draw();
-    pl2p2.draw();
-    pl2p3.draw();
-    pl2p4.draw();
-    pl2p5.draw();
+    //pl2p1.draw();
+    //pl2p2.draw();
+    //pl2p3.draw();
+    //pl2p4.draw();
+    //pl2p5.draw();
     //  pl2p6.draw();
      // pl2p7.draw();
      // pl2p8.draw();
-    p1r1.draw();
-    Pieces* piece2 = board1.getPiece(0, 0);
-    setPosition(1, 24);
-    if (piece2 == &p2r1)
-    {
-        std::cout << "The rook is here just not drawn";
-    }
-    else
-        std::cout << "Huston we have another problem";
+    //p1r1.draw();
+    //Pieces* piece2 = board1.getPiece(0, 0);
+    //setPosition(1, 24);
+    //if (piece2 == &p2r1)
+    //{
+    //    std::cout << "The rook is here just not drawn";
+    //}
+    //else
+     //   std::cout << "Huston we have another problem";
     // p1r2.draw();
-    p2r1.draw();
+    //p2r1.draw();
     // p2r2.draw();
-    p1b1.draw();
+    //p1b1.draw();
     // p1b2.draw();
-    p2b1.draw();
+    //p2b1.draw();
     // p2b2.draw();
-    p1kn1.draw();
+    //p1kn1.draw();
     //p1kn2.draw();
-    p2kn1.draw();
+    //p2kn1.draw();
     //  p2kn2.draw();
-    p1q.draw();
-    p2q.draw();
-    p1k.draw();
-    p2k.draw();
+    //p1q.draw();
+    //p2q.draw();
+    //p1k.draw();
+    //p2k.draw();
 
 }
 void game::SwitchPlayer()
