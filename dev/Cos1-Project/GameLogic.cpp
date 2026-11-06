@@ -122,20 +122,72 @@ bool game::validatePlayer(int currentPlayer, COORD highlighted)
     }
     return valid;
 }
-void game::capture(COORD highlighted)
+//making this a boolean to see if the move is safe
+//if will expose own king fails, then will use the result in the turn loop to send you back to selecting a piece
+bool game::capture(COORD highlighted)
 {
     bool canMove = false;
     bool pass;
+    bool safeFromSelfCheck = false;
+    bool needPieceBackup = false;
     COORD compare;
     HANDLE hInput = GetStdHandle(STD_INPUT_HANDLE);
     while (canMove == false)
     {
         compare = game::getClicks(hInput);
+        //this makes sure that the new location is already marked as a legal move
         if (board1.getOccupied(compare.X, compare.Y) == true)
         {
-            Pieces* piece = board1.getPiece(highlighted.X, highlighted.Y);
-            board1.placeP(piece, compare.X, compare.Y);
-            canMove = true;
+            //checking for nullptr at new potential location
+            if (board1.getPiece(compare.X, compare.Y) != nullptr)
+            {
+                //saving old piece, so if reset is needed can place back to original location
+                //second thought cant access saved piece in this, I could however maybe use a variable then save outside of function
+                needPieceBackup = true;
+            }
+            //run the move
+            if (needPieceBackup == true)
+            {
+                //now saving old piece in same section if the new location is not nullptr
+                //requires writing this twice
+                Pieces* toBeCaptured = board1.getPiece(compare.X, compare.Y);
+                Pieces* piece = board1.getPiece(highlighted.X, highlighted.Y);
+                board1.placeP(piece, compare.X, compare.Y);
+                //check that its safe
+                safeFromSelfCheck = testCheckSelf(getCurrentPlayer());
+                if (safeFromSelfCheck == true)
+                {
+                    return true;
+                    canMove = true;
+                }
+                else
+                {
+                    //if move is not safe
+                    board1.placeP(piece, highlighted.X, highlighted.Y);
+                    board1.placeP(toBeCaptured, compare.X, compare.Y);
+                    return false;
+                }
+            }
+            else
+            {
+                //now saving old piece in same section if the new location is not nullptr
+//requires writing this twice
+                Pieces* piece = board1.getPiece(highlighted.X, highlighted.Y);
+                board1.placeP(piece, compare.X, compare.Y);
+                //check that its safe
+                safeFromSelfCheck = testCheckSelf(getCurrentPlayer());
+                if (safeFromSelfCheck == true)
+                {
+                    return true;
+                    canMove = true;
+                }
+                else
+                {
+                    //if move is not safe
+                    board1.placeP(piece, highlighted.X, highlighted.Y);
+                    return false;
+                }
+            }
         }
     }
 

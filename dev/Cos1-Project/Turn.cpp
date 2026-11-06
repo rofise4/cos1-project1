@@ -36,19 +36,31 @@ COORD game::getPieceSelected(HANDLE hInput)
 }
 void game::Turn()
 {
+	bool proceed = false;
+	//wraping the select piece and then movement logic in a while loop
+	//using the safety check just added to capture and changes to make it a boolean function
+	//if it fails you select a new piece and try again
+	//if it passes we draw the board and switch turns
+	//also will be adding a check next so if you click a different square during capture it resets and allows you to select a different piece
+	//so this should set that up
+	while (proceed == false)
+	{
+		board1.resetOccupied();
+		board1.resetSelected();
+		//first test got frozen with piece highlighted
+		//making sure it actually looped by redrawing after clearing highlights
+		board1.DrawBoard();
+		HANDLE hInput = GetStdHandle(STD_INPUT_HANDLE);
+		setPosition(0, 20);
+		std::cout << "Waiting for clicks";
+		COORD highlighted = getPieceSelected(hInput);
+		board1.DrawBoard();
+		Pieces* piece = board1.getPiece(highlighted.X, highlighted.Y);
+		piece->getmovesp1(board1, getCurrentPlayer());
+		board1.DrawBoard();
+		proceed = capture(highlighted);
+	}
 
-	board1.resetOccupied();
-	board1.resetSelected();
-	HANDLE hInput = GetStdHandle(STD_INPUT_HANDLE);
-	setPosition(0, 20);
-	std::cout << "Waiting for clicks";
-	COORD highlighted = getPieceSelected(hInput);
-	board1.DrawBoard();
-	Pieces* piece = board1.getPiece(highlighted.X, highlighted.Y);
-	piece->getmovesp1(board1, getCurrentPlayer());
-	board1.DrawBoard();
-	capture(highlighted);
-	board1.DrawBoard();
 	board1.resetOccupied();
 	board1.resetSelected();
 	board1.DrawBoard();
