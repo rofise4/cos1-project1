@@ -154,7 +154,7 @@
         int oldY = piece->GetY();
         if (oldX >= 0 && oldX < 5 && oldY >= 0 && oldY < 5)
         {
-            if (squares[oldY][oldX] = piece)
+            if (squares[oldY][oldX] == piece)
             {
                 squares[oldY][oldX] = nullptr;
             }
