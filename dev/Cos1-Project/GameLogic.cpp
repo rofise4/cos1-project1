@@ -205,6 +205,11 @@ bool game::capture(COORD highlighted)
                     return false;
                 }
             }
+
+        }
+        else
+        {
+            return false;
         }
     }
 
