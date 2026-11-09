@@ -139,11 +139,20 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Chess.cpp" />
+    <ClCompile Include="ChessBoard.cpp" />
+    <ClCompile Include="ConsoleGraphics.cpp" />
     <ClCompile Include="Cos1-Project.cpp" />
+    <ClCompile Include="GameLogic.cpp" />
+    <ClCompile Include="GameLoop.cpp" />
+    <ClCompile Include="PiecesMovement.cpp" />
+    <ClCompile Include="PiecesBase.cpp" />
+    <ClCompile Include="Turn.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Chess.h" />
+    <ClInclude Include="ChessBoard.h" />
+    <ClInclude Include="ConsoleGraphics.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="Pieces.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
