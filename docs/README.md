@@ -31,7 +31,20 @@ It's common for repositories to contain documentation provided by the developers
 
 In this class you may be asked to work on documentation that can be stored in this folder. 
 
+## Changelog
 
+### Week 2
+**Added**
+- Main menu
+- Legal move highlighting
+
+**Fixed**
+- Selecting pieces with no available moves
+
+**Improved**
+- Separated piece classes into individual files
+- Organized console graphics functions
+- Removed using namespace std
 
 
 
