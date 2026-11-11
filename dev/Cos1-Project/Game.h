@@ -24,6 +24,9 @@ public:
     COORD getP1KingLocation();
     COORD getP2KingLocation();
     bool testCheckSelf(int currentPlayer);
+    bool testCheckmate(int currentPlayer);
+    bool getMoves(int currentPlayer);
+    void moveSimulation();
 private:
     //starting player value
     int currentPlayer = 1;

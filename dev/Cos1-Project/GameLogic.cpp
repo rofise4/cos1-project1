@@ -332,3 +332,123 @@ bool game::testCheckSelf(int currentPlayer)
         }
     }
 }
+/*bool game::getMoves(int currentPlayer)
+{
+    if (currentPlayer == 1)
+    {
+        COORD ownKing = getP1KingLocation();
+        //get coordinates for player 1 king
+        for (int i = 0; i < 5; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                //loop through all pieces, check if null first
+                Pieces* piece = board1.getPiece(i, j);
+                if (piece != nullptr)
+                {
+                    //if enemy piece
+                    if (piece->isP2())
+                    {
+                        //mark available moves
+                        piece->getmovesp1(board1, 2);
+                    }
+                }
+            }
+        }
+    }
+    else
+    {
+        COORD ownKing = getP2KingLocation();
+        for (int i = 0; i < 5; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                Pieces* piece = board1.getPiece(i, j);
+                if (piece != nullptr)
+                {
+                    if (!piece->isP2())
+                    {
+                        piece->getmovesp1(board1, 1);
+                    }
+                }
+            }
+        }
+    }
+}
+*/
+//bool game::testCheckmate(int currentPlayer)
+//{
+
+ //   board1.resetOccupied();
+    /*writing this in advance, idea is basically allow temporary move in my move function
+    next loop through all enemy pieces, get available moves and compare to self king coordinates
+    if any available moves from the opponent would touch your kings coordinates after the planned move
+    reject it and reset to force you reselct.
+
+    MAJOR NOTE TO SELF FOR ADDING THIS INTO TURN------
+    REESSSSEEETTTT TEST MOVE BOTH PASS AND FAIL, DO NOT ALLOW TO THROUGH OFF MATH BEING PERFORMED
+    I WILL BE DISAPOINTED IN FUTURE YOU*/
+
+    //to get functional im writing this twice for either player rather then making 1 function thats more complicated. revise later as needed
+/*    if (currentPlayer == 1)
+    {
+        COORD ownKing = getP1KingLocation();
+        //get coordinates for player 1 king
+        for (int i = 0; i < 5; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                //loop through all pieces, check if null first
+                Pieces* piece = board1.getPiece(i, j);
+                if (piece != nullptr)
+                {
+                    //if enemy piece
+                    if (piece->isP2())
+                    {
+                        //mark available moves
+                        piece->getmovesp1(board1, 2);
+                    }
+                }
+            }
+        }
+        //once all available opponent moves are marked, compare with kings coordinance
+        if (board1.getOccupied(ownKing.X, ownKing.Y))
+        {
+            board1.resetOccupied();
+            return false;
+        }
+        else
+        {
+            board1.resetOccupied();
+            return true;
+        }
+    }
+    else
+    {
+        COORD ownKing = getP2KingLocation();
+        for (int i = 0; i < 5; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                Pieces* piece = board1.getPiece(i, j);
+                if (piece != nullptr)
+                {
+                    if (!piece->isP2())
+                    {
+                        piece->getmovesp1(board1, 1);
+                    }
+                }
+            }
+        }
+        if (board1.getOccupied(ownKing.X, ownKing.Y))
+        {
+            board1.resetOccupied();
+            return false;
+        }
+        else
+        {
+            board1.resetOccupied();
+            return true;
+        }
+    }
+}*/
