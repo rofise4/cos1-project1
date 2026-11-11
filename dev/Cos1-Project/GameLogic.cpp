@@ -214,7 +214,7 @@ bool game::capture(COORD highlighted)
     }
 
 }
-COORD game::getP1KingLocation()
+COORD game::getKingLocation(int player)
 {
     COORD King = { -1,-1 };
 
@@ -224,7 +224,7 @@ COORD game::getP1KingLocation()
                 for (int j = 0; j < 5; j++)
                 {
                     Pieces* piece = board1.getPiece(i, j);
-                    if (piece == &p1k)
+                    if (piece == &p1k && player == 1 || piece == &p2k && player == 2)
                     {
                         King.X = i;
                         King.Y = j;
@@ -235,27 +235,7 @@ COORD game::getP1KingLocation()
 
     return King;
 }
-COORD game::getP2KingLocation()
-{
-    COORD King = { -1, -1 };
 
-
-    for (int i = 0; i < 5; i++)
-    {
-        for (int j = 0; j < 5; j++)
-        {
-            Pieces* piece = board1.getPiece(i, j);
-            if (piece == &p2k)
-            {
-                King.X = i;
-                King.Y = j;
-                return King;
-            }
-        }
-    }
-
-    return King;
-}
 bool game::testCheckSelf(int currentPlayer)
 {
     
@@ -272,7 +252,7 @@ bool game::testCheckSelf(int currentPlayer)
     //to get functional im writing this twice for either player rather then making 1 function thats more complicated. revise later as needed
     if (currentPlayer == 1)
     {
-        COORD ownKing = getP1KingLocation();
+        COORD ownKing = getKingLocation(1);
         //get coordinates for player 1 king
         for (int i = 0; i < 5; i++)
         {
@@ -305,7 +285,7 @@ bool game::testCheckSelf(int currentPlayer)
     }
     else
     {
-        COORD ownKing = getP2KingLocation();
+        COORD ownKing = getKingLocation(2);
         for (int i = 0; i < 5; i++)
         {
             for (int j = 0; j < 5; j++)

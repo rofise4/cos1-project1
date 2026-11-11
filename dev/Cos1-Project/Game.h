@@ -21,8 +21,8 @@ public:
     //coord returns a pair of x,y together. since i developed my board using [x][y] for storing positions between my pieces it allows for easier plugging into my existing code
     COORD getClicks(HANDLE hInput);
     bool capture(COORD highlighted);
-    COORD getP1KingLocation();
-    COORD getP2KingLocation();
+
+    COORD getKingLocation(int player);
     bool testCheckSelf(int currentPlayer);
     bool testCheckmate(int currentPlayer);
     bool getMoves(int currentPlayer);
