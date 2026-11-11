@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "ChessBoard.h"
+#include <vector>
 
 void game::setupPieces()
 {
@@ -312,14 +313,15 @@ bool game::testCheckSelf(int currentPlayer)
         }
     }
 }
-/*bool game::getMoves(int currentPlayer)
+bool game::getMoves(int currentPlayer)
 {
+    bool clear = false;
     if (currentPlayer == 1)
     {
-        COORD ownKing = getP1KingLocation();
-        //get coordinates for player 1 king
+
         for (int i = 0; i < 5; i++)
         {
+
             for (int j = 0; j < 5; j++)
             {
                 //loop through all pieces, check if null first
@@ -329,33 +331,139 @@ bool game::testCheckSelf(int currentPlayer)
                     //if enemy piece
                     if (piece->isP2())
                     {
+
+                        continue;
+                    }
+                    else
+                    {
+                        board1.resetOccupied();
                         //mark available moves
-                        piece->getmovesp1(board1, 2);
+                        piece->getmovesp1(board1, 1);
+
+                        //copy moves coords to seperate list
+                        std::vector<COORD> toTest;
+                        //cycle through moves and cross off list after testing self check
+                        //move to next piece
+                        for (SHORT x = 0; x < 5; x++)
+                        {
+                            //looping through x and y coordinates on grid
+                            for (SHORT y = 0; y < 5; y++)
+                            {
+                                //testing coordinate to see if it is one of the highlighted available moves
+                                if (board1.getOccupied(x, y))
+                                {
+                                    //save the coordinates and add to vector to cycle through with tests
+                                    COORD test = { x,y };
+                                    toTest.push_back(test);
+                                }
+                                else
+                                    continue;
+                            }
+                        }
+                        for (COORD test : toTest)
+                        {
+                            //save the pieces that simulate capture
+                            Pieces* removed = board1.getPiece(test.X, test.Y);
+                            //make the move temporarily
+                            board1.placeP(piece, test.X, test.Y);
+                            //check to see if the move solved check and king is safe
+                            clear = testCheckSelf(currentPlayer);
+                            //return piece moved
+                            board1.placeP(piece, i, j);
+                            //return captured piece if one excisted
+                            if (removed != nullptr)
+                            {
+                                board1.placeP(removed, test.X, test.Y);
+                            }
+                            //test if we cleared check before moving to next piece
+                            if (clear == true)
+                            {
+                                return true;
+                            }
+                        }
+
+
                     }
                 }
             }
         }
+        return false;
     }
     else
     {
-        COORD ownKing = getP2KingLocation();
+
         for (int i = 0; i < 5; i++)
         {
+
             for (int j = 0; j < 5; j++)
             {
+                //loop through all pieces, check if null first
                 Pieces* piece = board1.getPiece(i, j);
                 if (piece != nullptr)
                 {
+                    //if enemy piece
                     if (!piece->isP2())
                     {
-                        piece->getmovesp1(board1, 1);
+
+                        continue;
+                    }
+                    else
+                    {
+                        board1.resetOccupied();
+                        //mark available moves
+                        piece->getmovesp1(board1, 2);
+
+                        //copy moves coords to seperate list
+                        std::vector<COORD> toTest;
+                        //cycle through moves and cross off list after testing self check
+                        //move to next piece
+                        for (SHORT x = 0; x < 5; x++)
+                        {
+                            //looping through x and y coordinates on grid
+                            for (SHORT y = 0; y < 5; y++)
+                            {
+                                //testing coordinate to see if it is one of the highlighted available moves
+                                if (board1.getOccupied(x, y))
+                                {
+                                    //save the coordinates and add to vector to cycle through with tests
+                                    COORD test = { x,y };
+                                    toTest.push_back(test);
+                                }
+                                else
+                                    continue;
+                            }
+                        }
+                        for (COORD test : toTest)
+                        {
+                            //save the pieces that simulate capture
+                            Pieces* removed = board1.getPiece(test.X, test.Y);
+                            //make the move temporarily
+                            board1.placeP(piece, test.X, test.Y);
+                            //check to see if the move solved check and king is safe
+                            clear = testCheckSelf(currentPlayer);
+                            //return piece moved
+                            board1.placeP(piece, i, j);
+                            //return captured piece if one excisted
+                            if (removed != nullptr)
+                            {
+                                board1.placeP(removed, test.X, test.Y);
+                            }
+                            //test if we cleared check before moving to next piece
+                            if (clear == true)
+                            {
+                                return true;
+                            }
+                        }
+
+
                     }
                 }
             }
         }
+        return false;
     }
 }
-*/
+
 //bool game::testCheckmate(int currentPlayer)
 //{
 
