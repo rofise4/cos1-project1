@@ -79,7 +79,8 @@ void game::run()
 
     while (gameRunning)
     {
-        Turn();
+        gameRunning = Turn();
+
     }
     // Sleep(1000);
      //board1.placeP(&pl2p1, 1, 5);

@@ -34,7 +34,7 @@ COORD game::getPieceSelected(HANDLE hInput)
 	return test;
 
 }
-void game::Turn()
+bool game::Turn()
 {
 	bool proceed = false;
 	//wraping the select piece and then movement logic in a while loop
@@ -45,28 +45,60 @@ void game::Turn()
 	//so this should set that up
 	while (proceed == false)
 	{
-		board1.resetOccupied();
-		board1.resetSelected();
-		setPosition(5, 27);
-		std::cout << "Are legal moves available	" << getMoves(currentPlayer);
-		//first test got frozen with piece highlighted
-		//making sure it actually looped by redrawing after clearing highlights
-		board1.DrawBoard();
-		HANDLE hInput = GetStdHandle(STD_INPUT_HANDLE);
-		setPosition(0, 20);
-		std::cout << "Waiting for clicks";
-		COORD highlighted = getPieceSelected(hInput);
-		board1.DrawBoard();
-		Pieces* piece = board1.getPiece(highlighted.X, highlighted.Y);
-		piece->getmovesp1(board1, getCurrentPlayer());
-		board1.DrawBoard();
-		proceed = capture(highlighted);
-	}
+		bool stale = false;
+		bool mate = false;
+		if (getMoves(currentPlayer) == true)
+		{
+			board1.resetOccupied();
+			board1.resetSelected();
+			setPosition(5, 27);
+			std::cout << "Are legal moves available	" << getMoves(currentPlayer);
+			//first test got frozen with piece highlighted
+			//making sure it actually looped by redrawing after clearing highlights
+			board1.DrawBoard();
+			HANDLE hInput = GetStdHandle(STD_INPUT_HANDLE);
+			setPosition(0, 20);
+			std::cout << "Waiting for clicks";
+			COORD highlighted = getPieceSelected(hInput);
+			board1.DrawBoard();
+			Pieces* piece = board1.getPiece(highlighted.X, highlighted.Y);
+			piece->getmovesp1(board1, getCurrentPlayer());
+			board1.DrawBoard();
+			proceed = capture(highlighted);
+			board1.resetOccupied();
+			board1.resetSelected();
+			board1.DrawBoard();
 
-	board1.resetOccupied();
-	board1.resetSelected();
-	board1.DrawBoard();
-	SwitchPlayer();
+
+		}
+		else
+		{
+			mate = testCheckmate(currentPlayer);
+			stale = testStaleMate(currentPlayer);
+		}
+		if (mate == true || stale == true)
+		{
+			SwitchPlayer();
+			if (mate == true)
+			{
+				setPosition(7, 24);
+				std::cout << "Player " << currentPlayer << " Wins by CheckMate!";
+			}
+			if (stale == true)
+			{
+				setPosition(7, 25);
+				std::cout << "StaleMate No Winners!";
+			}
+			return false;
+		}
+		if (proceed == true)
+		{
+			SwitchPlayer();
+		}
+	}
+	return true;
+
+
 	//setPosition(0, 20);
 	/*if (board1.getPiece(highlighted.X, highlighted.Y) == nullptr)
 	{

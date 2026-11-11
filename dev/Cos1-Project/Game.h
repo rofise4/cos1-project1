@@ -13,7 +13,7 @@ public:
 
     int getCurrentPlayer()const;
     bool initializeMouse(HANDLE hInput);
-    void Turn();
+    bool Turn();
     COORD getPieceSelected(HANDLE hInput);
     bool validatePlayer(int currentPlayer, COORD highlighted);
     //defenition in game loop, but will be defined bellow in line with my run and setup functions for orginization in one file
@@ -21,7 +21,7 @@ public:
     //coord returns a pair of x,y together. since i developed my board using [x][y] for storing positions between my pieces it allows for easier plugging into my existing code
     COORD getClicks(HANDLE hInput);
     bool capture(COORD highlighted);
-
+    bool testStaleMate(int currentPlayer);
     COORD getKingLocation(int player);
     bool testCheckSelf(int currentPlayer);
     bool testCheckmate(int currentPlayer);
