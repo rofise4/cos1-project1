@@ -47,7 +47,7 @@ void game::Turn()
 	{
 		board1.resetOccupied();
 		board1.resetSelected();
-		setPosition(5, 20);
+		setPosition(5, 27);
 		std::cout << "Are legal moves available	" << getMoves(currentPlayer);
 		//first test got frozen with piece highlighted
 		//making sure it actually looped by redrawing after clearing highlights
