@@ -98,6 +98,7 @@ std::vector<int> selectPiece(int currentPlayer, int p1Budget, int p2Budget, std:
 	int locate;
 	int budget;
 	std::vector<int> selected;
+	std::vector<int> prices = { 1, 3, 3, 5, 9 };
 	bool anyavailable = false;
 	//setting budget
 	if (currentPlayer == 1)
@@ -111,7 +112,7 @@ std::vector<int> selectPiece(int currentPlayer, int p1Budget, int p2Budget, std:
 	//ensure there is an affordable selection or inform player their turn has ended
 	for (int i = 0; i < 3; i++)
 	{
-		if (options[i] > budget)
+		if (prices[options[i] - 1] > budget)
 		{
 			continue;
 		}
@@ -141,7 +142,7 @@ std::vector<int> selectPiece(int currentPlayer, int p1Budget, int p2Budget, std:
 		//verifying input range
 		if (locate >= 0 && locate <= 2)
 		{
-			if (options[locate] >= budget)
+			if (prices[options[locate] -1] <= budget)
 			{
 				//copy contents of options to selected to get piece selected
 				selected.push_back(options[locate]);
