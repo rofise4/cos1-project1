@@ -96,13 +96,19 @@ void game::run()
     drafting.displayBudget();
     Sleep(10000);
     drafting.resetConsole();
-    setupPieces();
+    board1.placeP(&p1k, 0, 4);
+    board1.placeP(&p2k, 4, 0);
+    p1k.draw();
+    p2k.draw();
+    placePieces(drafting);
+    drafting.resetConsole();
 
     while (gameRunning)
     {
         gameRunning = Turn();
 
     }
+    deleteCreatedPieces();
     // Sleep(1000);
      //board1.placeP(&pl2p1, 1, 5);
      //pl2p1.Isp2(true);

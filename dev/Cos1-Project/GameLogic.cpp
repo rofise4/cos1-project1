@@ -415,6 +415,7 @@ void game::placeDraftPiece(Pieces* piece)
             {
                 //places piece then tests for any check situations created by it
                 board1.placeP(piece, selected.X, selected.Y);
+                piece->draw();
                 p1safe = testCheckSelf(1);
                 p2safe = testCheckSelf(2);
                 if (p1safe && p2safe)
@@ -473,6 +474,46 @@ Pieces* game::createPieces(int pieceID, int currentPlayer)
     }
 
     return piece;
+}
+void game::placePieces(Drafting& drafting)
+{
+    //copying drafted selections
+    std::vector<int> p1 = drafting.getP1Pieces();
+    std::vector<int> p2 = drafting.getP2Pieces();
+
+    //creating loop for 5 turns of drafting
+    for (int i = 0; i < 5; i++)
+    {
+        //checking length of vector
+        if (i < p1.size())
+        { 
+            //create piece from id at location in vector and set player number
+            Pieces* piece = createPieces(p1[i], 1);
+            if (piece != nullptr)
+            {
+                //instruct to place piece on board
+                drafting.resetConsole();
+                setPosition(0, 22);
+                std::cout << "Player 1, click a square to place your " << piece->GetSymbol() << "\n";
+                //place piece
+                placeDraftPiece(piece);
+            }
+        }
+        if (i < p2.size())
+        {
+            //create piece from id at location in vector and set player number
+            Pieces* piece = createPieces(p2[i], 2);
+            if (piece != nullptr)
+            {
+                //instruct to place piece on board
+                drafting.resetConsole();
+                setPosition(0, 22);
+                std::cout << "Player 2, click a square to place your " << piece->GetSymbol() << "\n";
+                //place piece
+                placeDraftPiece(piece);
+            }
+        }
+    }
 }
 //free up memory
 void game::deleteCreatedPieces()
