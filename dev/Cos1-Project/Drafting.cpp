@@ -91,6 +91,71 @@ std::vector<int> displayDraftPieces(int currentPlayer, int p1Budget, int p2Budge
 	}
 	return options;
 }
+std::vector<int> selectPiece(int currentPlayer, int p1Budget, int p2Budget, std::vector<int> options)
+{
+	bool isValid = false;
+	bool isInBudget = false;
+	int locate;
+	int budget;
+	std::vector<int> selected;
+	bool anyavailable = false;
+	//setting budget
+	if (currentPlayer == 1)
+	{
+		budget = p1Budget;
+	}
+	else
+	{
+		budget = p2Budget;
+	}
+	//ensure there is an affordable selection or inform player their turn has ended
+	for (int i = 0; i < 3; i++)
+	{
+		if (options[i] > budget)
+		{
+			continue;
+		}
+		else
+		{
+			anyavailable = true;
+		}
+	}
+	if (anyavailable == false)
+	{
+		std::cout << "It seems like you cannot afford to draft this turn, next players turn commencing " << "\n";
+		selected.push_back(6);
+		return selected;
+	}
+	//loop to restart until selection is valid, name might me slighly missleading for bool
+	//renamed
+	while (isValid == false)
+	{
+		//getting input for selection
+		int attempted;
+		std::cout << "Please enter the number for you selection and press enter: ";
+		std::cin >> attempted;
+		std::cout << "\n";
+
+		//locate is -1 because selection from player is not starting at 0 where the vector starts
+		locate = attempted - 1;
+		//verifying input range
+		if (locate >= 0 && locate <= 2)
+		{
+			if (options[locate] >= budget)
+			{
+				//copy contents of options to selected to get piece selected
+				selected.push_back(options[locate]);
+				return selected;
+			}
+			else
+			{
+
+				//tell them why before looping back
+				std::cout << "Sorry but it appears you cannot afford that piece " << "\n";
+			}
+		}
+	}
+}
 void startDraft()
 {
 	setPosition(3, 5);
