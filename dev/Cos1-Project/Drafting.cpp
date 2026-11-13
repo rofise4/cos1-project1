@@ -166,7 +166,7 @@ void Drafting::startDraft()
 	std::cout << "Be warned, if your budget is too low you may not be able to purchase further pieces, so choose carefully " << "\n";
 	for (int i = 0; i < 5; i++)
 	{
-	    std::cout << "Player 1, you currently have " << p1Budget << " remaining. Here are your options";
+	    std::cout << "Player 1, you currently have " << p1Budget << " remaining. Here are your options" << "\n";
 		round = displayDraftPieces(1, p1Budget, p2Budget);
 		//need to incoperate setters for purchase vectors;
 		selected = selectPiece(1, p1Budget, p2Budget, round);
@@ -204,7 +204,7 @@ void Drafting::startDraft()
 		{
 			std::cout << "You have not purchased anything" << "\n";
 		}
-		std::cout << "Player 2, you currently have " << p2Budget << " remaining. Here are your options";
+		std::cout << "Player 2, you currently have " << p2Budget << " remaining. Here are your options" << "\n";
 		round = displayDraftPieces(2, p1Budget, p2Budget);
 		//need to incoperate setters for purchase vectors;
 		selected = selectPiece(2, p1Budget, p2Budget, round);
@@ -243,4 +243,11 @@ void Drafting::startDraft()
 			std::cout << "You have not purchased anything" << "\n";
 		}
 	}
+}
+void Drafting::resetDraftV()
+{
+	p1Budget = 20;
+	p2Budget = 20;
+	p1Pieces.clear();
+	p2Pieces.clear();
 }
