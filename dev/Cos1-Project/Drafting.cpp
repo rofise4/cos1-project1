@@ -8,7 +8,7 @@
 #include <cstdlib>
 #include <string>
 
-std::vector<int> displayDraftPieces(int currentPlayer, int p1Budget, int p2Budget)
+std::vector<int> Drafting::displayDraftPieces(int currentPlayer, int p1Budget, int p2Budget)
 {
 	/*this section is a little weird by design, so im going to give an overview
 	the entire function is soley to create possible pieces for purchase, then display them and their cost to the player
@@ -91,7 +91,7 @@ std::vector<int> displayDraftPieces(int currentPlayer, int p1Budget, int p2Budge
 	}
 	return options;
 }
-std::vector<int> selectPiece(int currentPlayer, int p1Budget, int p2Budget, std::vector<int> options)
+std::vector<int> Drafting::selectPiece(int currentPlayer, int p1Budget, int p2Budget, std::vector<int> options)
 {
 	bool isValid = false;
 	bool isInBudget = false;
@@ -157,16 +157,27 @@ std::vector<int> selectPiece(int currentPlayer, int p1Budget, int p2Budget, std:
 		}
 	}
 }
+void Drafting::resetConsole()
+{
+	for (int i = 20; i < 35; i++)
+	{
+		setPosition(0, i);
+		//colorBG();
+		std::cout << "                                                                                                         ";
+	}
+}
 void Drafting::startDraft()
 {
-	
+	resetConsole();
 	std::vector<int> round;
 	std::vector<int> selected;
-	std::cout << "Welcome players, you will take turns purchasing your chess pieces accross multiple rounds " << "\n";
+	setPosition(0, 20);
+	std::cout << "Welcome players, you will take turns purchasing your chess pieces accross multiple rounds                " << "\n";
 	std::cout << "Be warned, if your budget is too low you may not be able to purchase further pieces, so choose carefully " << "\n";
 	for (int i = 0; i < 5; i++)
 	{
-	    std::cout << "Player 1, you currently have " << p1Budget << " remaining. Here are your options" << "\n";
+		setPosition(0, 22);
+		std::cout << "Player 1, you currently have " << p1Budget << " remaining. Here are your options" << "\n";
 		round = displayDraftPieces(1, p1Budget, p2Budget);
 		//need to incoperate setters for purchase vectors;
 		selected = selectPiece(1, p1Budget, p2Budget, round);
@@ -204,6 +215,9 @@ void Drafting::startDraft()
 		{
 			std::cout << "You have not purchased anything" << "\n";
 		}
+		Sleep(3000);
+		resetConsole();
+		setPosition(0, 22);
 		std::cout << "Player 2, you currently have " << p2Budget << " remaining. Here are your options" << "\n";
 		round = displayDraftPieces(2, p1Budget, p2Budget);
 		//need to incoperate setters for purchase vectors;
@@ -242,6 +256,8 @@ void Drafting::startDraft()
 		{
 			std::cout << "You have not purchased anything" << "\n";
 		}
+		Sleep(3000);
+		resetConsole();
 	}
 }
 void Drafting::resetDraftV()
@@ -250,4 +266,17 @@ void Drafting::resetDraftV()
 	p2Budget = 20;
 	p1Pieces.clear();
 	p2Pieces.clear();
+}
+std::vector<int> Drafting::getP1Pieces()
+{
+	return p1Pieces;
+}
+std::vector<int> Drafting::getP2Pieces()
+{
+	return p2Pieces;
+}
+void Drafting::displayBudget()
+{
+	std::cout << "Player 1 budget is " << p1Budget << "\n";
+	std::cout << "Player 2 budget is " << p2Budget << "\n";
 }

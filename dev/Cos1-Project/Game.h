@@ -2,6 +2,7 @@
 #include "ChessBoard.h"
 #include "Pieces.h"
 #include <Windows.h>
+#include "Drafting.h"
 
 class game
 {

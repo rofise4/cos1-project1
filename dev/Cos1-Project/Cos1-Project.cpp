@@ -10,6 +10,7 @@ void Menu()
 {
     SetConsoleSize();
     std::cout << "Welcome to Chess Wars!" << "\n";
+    std::cout << "Please make your console fullscreen" << "\n";
     std::cout << "To play enter 'y', to exit press anything else" << "\n";
     std::string run;
     std::cin >> run;

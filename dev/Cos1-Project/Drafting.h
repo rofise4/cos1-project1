@@ -18,4 +18,8 @@ public:
 	std::vector<int> selectPiece(int currentPlayer, int p1Budget, int p2Budget, std::vector<int> options);
 	std::vector<int> displayDraftPieces(int currentPlayer, int p1Budget, int p2Budget);
 	void resetDraftV();
+	std::vector<int> getP1Pieces();
+	std::vector<int> getP2Pieces();
+	void displayBudget();
+	void resetConsole();
 };

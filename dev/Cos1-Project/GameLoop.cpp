@@ -1,5 +1,6 @@
 #include "Game.h"
 #include <Windows.h>
+#include "Drafting.h"
 
 bool game::initializeMouse(HANDLE hInput)
 {
@@ -75,6 +76,26 @@ void game::run()
     HANDLE hInput = GetStdHandle(STD_INPUT_HANDLE);
     initializeMouse(hInput);
     bool gameRunning = true;
+    Drafting drafting;
+    drafting.resetDraftV();
+    drafting.startDraft();
+    drafting.resetConsole();
+    setPosition(0, 22);
+    std::cout << "P1 purchased " << "\n";
+    for (int piece : drafting.getP1Pieces())
+    {
+        std::cout << piece << " ";
+    }
+    std::cout << "\n";
+    std::cout << "P2 purchased " << "\n";
+    for (int piece : drafting.getP2Pieces())
+    {
+        std::cout << piece << " ";
+    }
+    std::cout << "\n";
+    drafting.displayBudget();
+    Sleep(10000);
+    drafting.resetConsole();
     setupPieces();
 
     while (gameRunning)
