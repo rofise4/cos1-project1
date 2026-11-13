@@ -142,6 +142,7 @@
     <ClCompile Include="ChessBoard.cpp" />
     <ClCompile Include="ConsoleGraphics.cpp" />
     <ClCompile Include="Cos1-Project.cpp" />
+    <ClCompile Include="Drafting.cpp" />
     <ClCompile Include="GameLogic.cpp" />
     <ClCompile Include="GameLoop.cpp" />
     <ClCompile Include="PiecesMovement.cpp" />
@@ -151,6 +152,7 @@
   <ItemGroup>
     <ClInclude Include="ChessBoard.h" />
     <ClInclude Include="ConsoleGraphics.h" />
+    <ClInclude Include="Drafting.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Pieces.h" />
   </ItemGroup>

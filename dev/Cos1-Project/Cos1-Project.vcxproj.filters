@@ -39,6 +39,9 @@
     <ClCompile Include="Turn.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Drafting.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConsoleGraphics.h">
@@ -51,6 +54,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Drafting.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
