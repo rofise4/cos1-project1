@@ -28,6 +28,7 @@ public:
     bool testCheckmate(int currentPlayer);
     bool getMoves(int currentPlayer);
     void moveSimulation();
+    void placeDraftPiece(Pieces* piece);
 private:
     //starting player value
     int currentPlayer = 1;

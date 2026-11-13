@@ -489,3 +489,44 @@ bool game::testStaleMate(int currentPlayer)
     else
         return false;
 }
+void game::placeDraftPiece(Pieces* piece)
+{
+    HANDLE hInput = GetStdHandle(STD_INPUT_HANDLE);
+    COORD selected;
+    Drafting drafting;
+    bool valid = false;
+    bool p1safe = false;
+    bool p2safe = false;
+    while (valid == false)
+    {
+        //checks for input within the console
+        selected = getClicks(hInput);
+        if (selected.X >= 0 && selected.X < 5 && selected.Y >= 0 && selected.Y < 5)
+        {
+            //makes sure square is empty
+            if (board1.getPiece(selected.X, selected.Y) == nullptr)
+            {
+                //places piece then tests for any check situations created by it
+                board1.placeP(piece, selected.X, selected.Y);
+                p1safe = testCheckSelf(1);
+                p2safe = testCheckSelf(2);
+                if (p1safe && p2safe)
+                {
+                    valid = true;
+                }
+                else
+                {
+                    drafting.resetConsole();
+                    setPosition(0, 22);
+                    std::cout << "That move is invalid because it places a king in check ";
+                }
+            }
+            else
+            {
+                drafting.resetConsole();
+                setPosition(0, 22);
+                std::cout << "That move is invalid because the square is already occupied ";
+            }
+        }
+    }
+}
