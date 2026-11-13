@@ -10,8 +10,8 @@ private:
 
 	//creating vector to store pieces purchased by each player
 	//not sure what data type is best, I might save piece to an int and just convert it withing game when assigning pieces to load
-	std::vector<int> p1Purchase;
-	std::vector<int> p2Purchase;
+	std::vector<int> p1Pieces;
+	std::vector<int> p2Pieces;
 
 public:
 	void startDraft();

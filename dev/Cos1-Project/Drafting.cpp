@@ -157,9 +157,90 @@ std::vector<int> selectPiece(int currentPlayer, int p1Budget, int p2Budget, std:
 		}
 	}
 }
-void startDraft()
+void Drafting::startDraft()
 {
-	setPosition(3, 5);
-	std::cout << "Welcome players, you will take turns purchasing your chess pieces accross three rounds " << "\n";
 	
+	std::vector<int> round;
+	std::vector<int> selected;
+	std::cout << "Welcome players, you will take turns purchasing your chess pieces accross multiple rounds " << "\n";
+	std::cout << "Be warned, if your budget is too low you may not be able to purchase further pieces, so choose carefully " << "\n";
+	for (int i = 0; i < 5; i++)
+	{
+	    std::cout << "Player 1, you currently have " << p1Budget << " remaining. Here are your options";
+		round = displayDraftPieces(1, p1Budget, p2Budget);
+		//need to incoperate setters for purchase vectors;
+		selected = selectPiece(1, p1Budget, p2Budget, round);
+		if (selected[0] == 1)
+		{
+			p1Budget = p1Budget - 1;
+			p1Pieces.push_back(1);
+			std::cout << "You have succesfully purchased a pawn and your remaining budget is " << p1Budget << "\n";
+		}
+		else if (selected[0] == 2)
+		{
+			p1Budget = p1Budget - 3;
+			p1Pieces.push_back(2);
+			std::cout << "You have succesfully purchased a knight and your remaining budget is " << p1Budget << "\n";
+		}
+		else if (selected[0] == 3)
+		{
+			p1Budget = p1Budget - 3;
+			p1Pieces.push_back(3);
+			std::cout << "You have succesfully purchased a bishop and your remaining budget is " << p1Budget << "\n";
+		}
+		else if (selected[0] == 4)
+		{
+			p1Budget = p1Budget - 5;
+			p1Pieces.push_back(4);
+			std::cout << "You have succesfully purchased a rook and your remaining budget is " << p1Budget << "\n";
+		}
+		else if (selected[0] == 5)
+		{
+			p1Budget = p1Budget - 9;
+			p1Pieces.push_back(5);
+			std::cout << "You have succesfully purchased a queen and your remaining budget is " << p1Budget << "\n";
+		}
+		else
+		{
+			std::cout << "You have not purchased anything" << "\n";
+		}
+		std::cout << "Player 2, you currently have " << p2Budget << " remaining. Here are your options";
+		round = displayDraftPieces(2, p1Budget, p2Budget);
+		//need to incoperate setters for purchase vectors;
+		selected = selectPiece(2, p1Budget, p2Budget, round);
+		if (selected[0] == 1)
+		{
+			p2Budget = p2Budget - 1;
+			p2Pieces.push_back(1);
+			std::cout << "You have succesfully purchased a pawn and your remaining budget is " << p2Budget << "\n";
+		}
+		else if (selected[0] == 2)
+		{
+			p2Budget = p2Budget - 3;
+			p2Pieces.push_back(2);
+			std::cout << "You have succesfully purchased a knight and your remaining budget is " << p2Budget << "\n";
+		}
+		else if (selected[0] == 3)
+		{
+			p2Budget = p2Budget - 3;
+			p2Pieces.push_back(3);
+			std::cout << "You have succesfully purchased a bishop and your remaining budget is " << p2Budget << "\n";
+		}
+		else if (selected[0] == 4)
+		{
+			p2Budget = p2Budget - 5;
+			p2Pieces.push_back(4);
+			std::cout << "You have succesfully purchased a rook and your remaining budget is " << p2Budget << "\n";
+		}
+		else if (selected[0] == 5)
+		{
+			p2Budget = p2Budget - 9;
+			p2Pieces.push_back(5);
+			std::cout << "You have succesfully purchased a queen and your remaining budget is " << p2Budget << "\n";
+		}
+		else
+		{
+			std::cout << "You have not purchased anything" << "\n";
+		}
+	}
 }
