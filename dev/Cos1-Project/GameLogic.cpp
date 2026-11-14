@@ -415,7 +415,8 @@ void game::placeDraftPiece(Pieces* piece)
             {
                 //places piece then tests for any check situations created by it
                 board1.placeP(piece, selected.X, selected.Y);
-                piece->draw();
+                board1.DrawBoard();
+
                 p1safe = testCheckSelf(1);
                 p2safe = testCheckSelf(2);
                 if (p1safe && p2safe)

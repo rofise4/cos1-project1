@@ -96,8 +96,11 @@ void game::run()
     drafting.displayBudget();
     Sleep(10000);
     drafting.resetConsole();
+
+    
     board1.placeP(&p1k, 0, 4);
     board1.placeP(&p2k, 4, 0);
+    p2k.Isp2(TRUE);
     p1k.draw();
     p2k.draw();
     placePieces(drafting);

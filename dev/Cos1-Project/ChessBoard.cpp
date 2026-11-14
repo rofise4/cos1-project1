@@ -159,6 +159,10 @@
                 squares[oldY][oldX] = nullptr;
             }
         }
+        if (squares[oldY][oldX] == piece)
+        {
+            squares[oldY][oldX] = nullptr;
+        }
         squares[newy][newx] = piece;
         piece->initializex(newx, newy);
     }
