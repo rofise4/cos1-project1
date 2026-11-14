@@ -45,12 +45,15 @@ bool game::Turn()
 	//so this should set that up
 	while (proceed == false)
 	{
+		
 		bool stale = false;
 		bool mate = false;
+		Drafting drafting;
 		if (getMoves(currentPlayer) == true)
 		{
 			board1.resetOccupied();
 			board1.resetSelected();
+			drafting.resetConsole();
 			setPosition(5, 27);
 			std::cout << "Are legal moves available	" << getMoves(currentPlayer);
 			//first test got frozen with piece highlighted
