@@ -57,8 +57,17 @@ bool game::Turn()
 			//making sure it actually looped by redrawing after clearing highlights
 			board1.DrawBoard();
 			HANDLE hInput = GetStdHandle(STD_INPUT_HANDLE);
-			setPosition(0, 20);
-			std::cout << "Waiting for clicks";
+			highlightCheck();
+			setPosition(0, 22);
+			if (currentPlayer == 1)
+			{
+				std::cout << "Player 1s turn";
+			}
+			else
+			{
+				std::cout << "Player 2s turn";
+			}
+
 			COORD highlighted = getPieceSelected(hInput);
 			board1.DrawBoard();
 			Pieces* piece = board1.getPiece(highlighted.X, highlighted.Y);

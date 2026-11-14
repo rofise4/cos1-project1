@@ -525,3 +525,24 @@ void game::deleteCreatedPieces()
     }
     createdPieces.clear();
 }
+void game::highlightCheck()
+{
+    //if player is in check
+    bool safe = testCheckSelf(currentPlayer);
+    board1.resetOccupied();
+    if (safe == false)
+    {
+        //get coordinates of king on board
+        COORD king = getKingLocation(currentPlayer);
+        //access piece at location and store
+        Pieces* piece = board1.getPiece(king.X, king.Y);
+        if (piece != nullptr)
+            //make sure its not a nullptr to avoid breaking the program
+        {
+            //use overloaded draw function to highlight king pink
+            piece->draw(true, false);
+            setPosition(0, 20);
+            std::cout << "You are currently in check";
+        }
+    }
+}

@@ -32,6 +32,7 @@ public:
     Pieces* createPieces(int pieceID, int currentPlayer);
     void deleteCreatedPieces();
     void placePieces(Drafting& drafting);
+    void highlightCheck();
 private:
     //starting player value
     int currentPlayer = 1;
