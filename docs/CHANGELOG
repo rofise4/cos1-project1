@@ -12,3 +12,21 @@
 - Separated piece classes into individual files
 - Organized console graphics functions
 - Removed using namespace std
+###Week 3
+So I got quite a bit done this week. I started off finishing up checkmate and stalemate detection which involved making a function that simulates possible moves and tests for check before returning everything to its original location. I also combined my 2 functions for locating the kings since they were basically doing the same exact thing.
+
+After getting that working I finally moved onto drafting. I made a seperate class for drafting and decided to give both players 20 points and 5 rounds to purchase pieces. I messed around a bit with how I wanted the RNG to work and intentionally made it possible for players to roll pieces they cant afford. I wanted there to be some risk involved in how you spend your points rather than just buying the strongest piece available every round.
+
+I ended up using vectors quite a bit throughout this process. I also had to change how I was creating my pieces since I no longer know how many of each piece im going to need. Im now dynamically allocating them and saving their pointers to a vector so I can delete them all at the end of the game.
+
+Placement was actually easier to implement than I expected since I was able to reuse quite a few of my existing functions. I decided to have the kings default to opposite corners and let the players place everything else wherever they want as long as neither king is put in check.
+
+I did run into some weird issues with invisible pieces and pieces leaving behind visual copies of themselves when being moved. I also completely forgot to assign player 2s king to player 2 after getting rid of my original setupPieces function. I got all of that sorted out though.
+
+I also decided to scrap pawn promotion, en passant and pawns moving 2 squares on their first move. After looking at how drafting and placement worked together I realized these rules would probably cause more issues with game balence than anything else. Especially considering how easy it would be to turn a 1 point pawn into a 9 point queen almost immediately.
+
+I spent some additional time making what is essentially an in game message console, kind of like in pokemon where you have a designated area for dialogue and instructions. I also made it highlight the players king when in check and added some messages explaining why certain actions were invalid.
+
+At this point ive completed all 3 of my issues for this week and have a functional game. I think I actually want to spend some time playing it now and seeing what kind of ridiculous strategies I can come up with before making any significant changes to the economy.
+
+Next week ill probably go back through some of my code and clean it up a bit, work on input validation and depending on how much time I have start incorporating abilities.
