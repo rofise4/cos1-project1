@@ -1,104 +1,12 @@
 #include "Game.h"
 #include "ChessBoard.h"
+#include <vector>
 
 void game::setupPieces()
 {
-    board1.placeP(&pl1p1, 0, 3);
-    board1.placeP(&pl1p2, 1, 3);
-    board1.placeP(&pl1p3, 2, 3);
-    board1.placeP(&pl1p4, 3, 3);
-    board1.placeP(&pl1p5, 4, 3);
-    //board1.placeP(&pl1p6, 5, 6);
-   // board1.placeP(&pl1p7, 6, 6);
-  //  board1.placeP(&pl1p8, 7, 6);
-    board1.placeP(&pl2p1, 0, 1);
-    pl2p1.Isp2(true);
-    board1.placeP(&pl2p2, 1, 1);
-    pl2p2.Isp2(true);
-    board1.placeP(&pl2p3, 2, 1);
-    pl2p3.Isp2(true);
-    board1.placeP(&pl2p4, 3, 1);
-    pl2p4.Isp2(true);
-    board1.placeP(&pl2p5, 4, 1);
-    pl2p5.Isp2(true);
-    //board1.placeP(&pl2p6, 5, 1);
-    //pl2p6.Isp2(true);
-    //board1.placeP(&pl2p7, 6, 1);
-    //pl2p7.Isp2(true);
-    //board1.placeP(&pl2p8, 7, 1);
-    //pl2p8.Isp2(true);
-    board1.placeP(&p1r1, 0, 4);
-    // board1.placeP(&p1r2, 4, 4);
-    board1.placeP(&p2r1, 0, 0);
-    p2r1.Isp2(true);
-    Pieces* piece = board1.getPiece(0, 0);
-    setPosition(1, 21);
-    if (piece == &p2r1)
-    {
-        std::cout << "The rook is here just not drawn";
-    }
-    else
-        std::cout << "Huston we have another problem";
-    // board1.placeP(&p2r2, 4, 0);
-     //p2r2.Isp2(true);
-    board1.placeP(&p1kn1, 1, 4);
-    //board1.placeP(&p1kn2, 3, 4);
-    board1.placeP(&p2kn1, 1, 0);
-    p2kn1.Isp2(true);
-    //board1.placeP(&p2kn2, 3, 0);
-    //p2kn2.Isp2(true);
-    board1.placeP(&p1b1, 2, 4);
-    //board1.placeP(&p1b2, 2, 4);
-    board1.placeP(&p2b1, 2, 0);
-    p2b1.Isp2(true);
-    //board1.placeP(&p2b2, 5, 0);
-    //p2b2.Isp2(true);
-    board1.placeP(&p1q, 3, 4);
-    board1.placeP(&p2q, 3, 0);
-    p2q.Isp2(true);
-    board1.placeP(&p1k, 4, 4);
+    board1.placeP(&p1k, 0, 4);
     board1.placeP(&p2k, 4, 0);
     p2k.Isp2(true);
-    //pl1p1.draw();
-    //pl1p2.draw();
-    //pl1p3.draw();
-    //pl1p4.draw();
-    //pl1p5.draw();
-    //  pl1p6.draw();
-     // pl1p7.draw();
-     // pl1p8.draw();
-    //pl2p1.draw();
-    //pl2p2.draw();
-    //pl2p3.draw();
-    //pl2p4.draw();
-    //pl2p5.draw();
-    //  pl2p6.draw();
-     // pl2p7.draw();
-     // pl2p8.draw();
-    //p1r1.draw();
-    //Pieces* piece2 = board1.getPiece(0, 0);
-    //setPosition(1, 24);
-    //if (piece2 == &p2r1)
-    //{
-    //    std::cout << "The rook is here just not drawn";
-    //}
-    //else
-     //   std::cout << "Huston we have another problem";
-    // p1r2.draw();
-    //p2r1.draw();
-    // p2r2.draw();
-    //p1b1.draw();
-    // p1b2.draw();
-    //p2b1.draw();
-    // p2b2.draw();
-    //p1kn1.draw();
-    //p1kn2.draw();
-    //p2kn1.draw();
-    //  p2kn2.draw();
-    //p1q.draw();
-    //p2q.draw();
-    //p1k.draw();
-    //p2k.draw();
 
 }
 void game::SwitchPlayer()
@@ -214,7 +122,7 @@ bool game::capture(COORD highlighted)
     }
 
 }
-COORD game::getP1KingLocation()
+COORD game::getKingLocation(int player)
 {
     COORD King = { -1,-1 };
 
@@ -224,7 +132,7 @@ COORD game::getP1KingLocation()
                 for (int j = 0; j < 5; j++)
                 {
                     Pieces* piece = board1.getPiece(i, j);
-                    if (piece == &p1k)
+                    if (piece == &p1k && player == 1 || piece == &p2k && player == 2)
                     {
                         King.X = i;
                         King.Y = j;
@@ -235,27 +143,7 @@ COORD game::getP1KingLocation()
 
     return King;
 }
-COORD game::getP2KingLocation()
-{
-    COORD King = { -1, -1 };
 
-
-    for (int i = 0; i < 5; i++)
-    {
-        for (int j = 0; j < 5; j++)
-        {
-            Pieces* piece = board1.getPiece(i, j);
-            if (piece == &p2k)
-            {
-                King.X = i;
-                King.Y = j;
-                return King;
-            }
-        }
-    }
-
-    return King;
-}
 bool game::testCheckSelf(int currentPlayer)
 {
     
@@ -272,7 +160,7 @@ bool game::testCheckSelf(int currentPlayer)
     //to get functional im writing this twice for either player rather then making 1 function thats more complicated. revise later as needed
     if (currentPlayer == 1)
     {
-        COORD ownKing = getP1KingLocation();
+        COORD ownKing = getKingLocation(1);
         //get coordinates for player 1 king
         for (int i = 0; i < 5; i++)
         {
@@ -305,7 +193,7 @@ bool game::testCheckSelf(int currentPlayer)
     }
     else
     {
-        COORD ownKing = getP2KingLocation();
+        COORD ownKing = getKingLocation(2);
         for (int i = 0; i < 5; i++)
         {
             for (int j = 0; j < 5; j++)
@@ -329,6 +217,332 @@ bool game::testCheckSelf(int currentPlayer)
         {
             board1.resetOccupied();
             return true;
+        }
+    }
+}
+bool game::getMoves(int currentPlayer)
+{
+    bool clear = false;
+    if (currentPlayer == 1)
+    {
+
+        for (int i = 0; i < 5; i++)
+        {
+
+            for (int j = 0; j < 5; j++)
+            {
+                //loop through all pieces, check if null first
+                Pieces* piece = board1.getPiece(i, j);
+                if (piece != nullptr)
+                {
+                    //if enemy piece
+                    if (piece->isP2())
+                    {
+
+                        continue;
+                    }
+                    else
+                    {
+                        board1.resetOccupied();
+                        //mark available moves
+                        piece->getmovesp1(board1, 1);
+
+                        //copy moves coords to seperate list
+                        std::vector<COORD> toTest;
+                        //cycle through moves and cross off list after testing self check
+                        //move to next piece
+                        for (SHORT x = 0; x < 5; x++)
+                        {
+                            //looping through x and y coordinates on grid
+                            for (SHORT y = 0; y < 5; y++)
+                            {
+                                //testing coordinate to see if it is one of the highlighted available moves
+                                if (board1.getOccupied(x, y))
+                                {
+                                    //save the coordinates and add to vector to cycle through with tests
+                                    COORD test = { x,y };
+                                    toTest.push_back(test);
+                                }
+                                else
+                                    continue;
+                            }
+                        }
+                        for (COORD test : toTest)
+                        {
+                            //save the pieces that simulate capture
+                            Pieces* removed = board1.getPiece(test.X, test.Y);
+                            //make the move temporarily
+                            board1.placeP(piece, test.X, test.Y);
+                            //check to see if the move solved check and king is safe
+                            clear = testCheckSelf(currentPlayer);
+                            //return piece moved
+                            board1.placeP(piece, i, j);
+                            //return captured piece if one excisted
+                            if (removed != nullptr)
+                            {
+                                board1.placeP(removed, test.X, test.Y);
+                            }
+                            //test if we cleared check before moving to next piece
+                            if (clear == true)
+                            {
+                                return true;
+                            }
+                        }
+
+
+                    }
+                }
+            }
+        }
+        return false;
+    }
+    else
+    {
+
+        for (int i = 0; i < 5; i++)
+        {
+
+            for (int j = 0; j < 5; j++)
+            {
+                //loop through all pieces, check if null first
+                Pieces* piece = board1.getPiece(i, j);
+                if (piece != nullptr)
+                {
+                    //if enemy piece
+                    if (!piece->isP2())
+                    {
+
+                        continue;
+                    }
+                    else
+                    {
+                        board1.resetOccupied();
+                        //mark available moves
+                        piece->getmovesp1(board1, 2);
+
+                        //copy moves coords to seperate list
+                        std::vector<COORD> toTest;
+                        //cycle through moves and cross off list after testing self check
+                        //move to next piece
+                        for (SHORT x = 0; x < 5; x++)
+                        {
+                            //looping through x and y coordinates on grid
+                            for (SHORT y = 0; y < 5; y++)
+                            {
+                                //testing coordinate to see if it is one of the highlighted available moves
+                                if (board1.getOccupied(x, y))
+                                {
+                                    //save the coordinates and add to vector to cycle through with tests
+                                    COORD test = { x,y };
+                                    toTest.push_back(test);
+                                }
+                                else
+                                    continue;
+                            }
+                        }
+                        for (COORD test : toTest)
+                        {
+                            //save the pieces that simulate capture
+                            Pieces* removed = board1.getPiece(test.X, test.Y);
+                            //make the move temporarily
+                            board1.placeP(piece, test.X, test.Y);
+                            //check to see if the move solved check and king is safe
+                            clear = testCheckSelf(currentPlayer);
+                            //return piece moved
+                            board1.placeP(piece, i, j);
+                            //return captured piece if one excisted
+                            if (removed != nullptr)
+                            {
+                                board1.placeP(removed, test.X, test.Y);
+                            }
+                            //test if we cleared check before moving to next piece
+                            if (clear == true)
+                            {
+                                return true;
+                            }
+                        }
+
+
+                    }
+                }
+            }
+        }
+        return false;
+    }
+}
+
+bool game::testCheckmate(int currentPlayer)
+{
+    //are you in check and have no available moves
+    if (testCheckSelf(currentPlayer) == false)
+    {
+        if (getMoves(currentPlayer) == false)
+        {
+            return true;
+        }
+    }
+    else
+        return false;
+}
+bool game::testStaleMate(int currentPlayer)
+{
+    if (testCheckSelf(currentPlayer) == true)
+    {
+        if (getMoves(currentPlayer) == false)
+        {
+            return true;
+        }
+    }
+    else
+        return false;
+}
+void game::placeDraftPiece(Pieces* piece)
+{
+    HANDLE hInput = GetStdHandle(STD_INPUT_HANDLE);
+    COORD selected;
+    Drafting drafting;
+    bool valid = false;
+    bool p1safe = false;
+    bool p2safe = false;
+    while (valid == false)
+    {
+        //checks for input within the console
+        selected = getClicks(hInput);
+        if (selected.X >= 0 && selected.X < 5 && selected.Y >= 0 && selected.Y < 5)
+        {
+            //makes sure square is empty
+            if (board1.getPiece(selected.X, selected.Y) == nullptr)
+            {
+                //places piece then tests for any check situations created by it
+                board1.placeP(piece, selected.X, selected.Y);
+                board1.DrawBoard();
+
+                p1safe = testCheckSelf(1);
+                p2safe = testCheckSelf(2);
+                if (p1safe && p2safe)
+                {
+                    valid = true;
+                }
+                else
+                {
+                    drafting.resetConsole();
+                    setPosition(0, 22);
+                    std::cout << "That move is invalid because it places a king in check ";
+                }
+            }
+            else
+            {
+                drafting.resetConsole();
+                setPosition(0, 22);
+                std::cout << "That move is invalid because the square is already occupied ";
+            }
+        }
+    }
+}
+Pieces* game::createPieces(int pieceID, int currentPlayer)
+{
+    //take id from drafting vector and create a new piece
+    Pieces* piece = nullptr;
+    if (pieceID == 1)
+    {
+        piece = new Pawn();
+    }
+    else if (pieceID == 2)
+    {
+        piece = new Knight();
+    }
+    else if (pieceID == 3)
+    {
+        piece = new Bishop();
+    }
+    else if (pieceID == 4)
+    {
+        piece = new Rook();
+    }
+    else if (pieceID == 5)
+    {
+        piece = new Queen();
+    }
+    if (piece != nullptr)
+    {
+        //if its player 2 mark it
+        if (currentPlayer == 2)
+        {
+            piece->Isp2(true);
+        }
+        //add it to created pieces vector so it can be deleted later
+        createdPieces.push_back(piece);
+    }
+
+    return piece;
+}
+void game::placePieces(Drafting& drafting)
+{
+    //copying drafted selections
+    std::vector<int> p1 = drafting.getP1Pieces();
+    std::vector<int> p2 = drafting.getP2Pieces();
+
+    //creating loop for 5 turns of drafting
+    for (int i = 0; i < 5; i++)
+    {
+        //checking length of vector
+        if (i < p1.size())
+        { 
+            //create piece from id at location in vector and set player number
+            Pieces* piece = createPieces(p1[i], 1);
+            if (piece != nullptr)
+            {
+                //instruct to place piece on board
+                drafting.resetConsole();
+                setPosition(0, 22);
+                std::cout << "Player 1, click a square to place your " << piece->GetSymbol() << "\n";
+                //place piece
+                placeDraftPiece(piece);
+            }
+        }
+        if (i < p2.size())
+        {
+            //create piece from id at location in vector and set player number
+            Pieces* piece = createPieces(p2[i], 2);
+            if (piece != nullptr)
+            {
+                //instruct to place piece on board
+                drafting.resetConsole();
+                setPosition(0, 22);
+                std::cout << "Player 2, click a square to place your " << piece->GetSymbol() << "\n";
+                //place piece
+                placeDraftPiece(piece);
+            }
+        }
+    }
+}
+//free up memory
+void game::deleteCreatedPieces()
+{
+    for (Pieces* piece : createdPieces)
+    {
+        delete piece;
+    }
+    createdPieces.clear();
+}
+void game::highlightCheck()
+{
+    //if player is in check
+    bool safe = testCheckSelf(currentPlayer);
+    board1.resetOccupied();
+    if (safe == false)
+    {
+        //get coordinates of king on board
+        COORD king = getKingLocation(currentPlayer);
+        //access piece at location and store
+        Pieces* piece = board1.getPiece(king.X, king.Y);
+        if (piece != nullptr)
+            //make sure its not a nullptr to avoid breaking the program
+        {
+            //use overloaded draw function to highlight king pink
+            piece->draw(true, false);
+            setPosition(0, 20);
+            std::cout << "You are currently in check";
         }
     }
 }

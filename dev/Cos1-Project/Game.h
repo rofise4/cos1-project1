@@ -2,6 +2,7 @@
 #include "ChessBoard.h"
 #include "Pieces.h"
 #include <Windows.h>
+#include "Drafting.h"
 
 class game
 {
@@ -13,7 +14,7 @@ public:
 
     int getCurrentPlayer()const;
     bool initializeMouse(HANDLE hInput);
-    void Turn();
+    bool Turn();
     COORD getPieceSelected(HANDLE hInput);
     bool validatePlayer(int currentPlayer, COORD highlighted);
     //defenition in game loop, but will be defined bellow in line with my run and setup functions for orginization in one file
@@ -21,43 +22,22 @@ public:
     //coord returns a pair of x,y together. since i developed my board using [x][y] for storing positions between my pieces it allows for easier plugging into my existing code
     COORD getClicks(HANDLE hInput);
     bool capture(COORD highlighted);
-    COORD getP1KingLocation();
-    COORD getP2KingLocation();
+    bool testStaleMate(int currentPlayer);
+    COORD getKingLocation(int player);
     bool testCheckSelf(int currentPlayer);
+    bool testCheckmate(int currentPlayer);
+    bool getMoves(int currentPlayer);
+    void moveSimulation();
+    void placeDraftPiece(Pieces* piece);
+    Pieces* createPieces(int pieceID, int currentPlayer);
+    void deleteCreatedPieces();
+    void placePieces(Drafting& drafting);
+    void highlightCheck();
 private:
     //starting player value
     int currentPlayer = 1;
     chessBoard board1;
-    Pawn pl1p1;
-    Pawn pl1p2;
-    Pawn pl1p3;
-    Pawn pl1p4;
-    Pawn pl1p5;
-    Pawn pl1p6;
-    Pawn pl1p7;
-    Pawn pl1p8;
-    Pawn pl2p1;
-    Pawn pl2p2;
-    Pawn pl2p3;
-    Pawn pl2p4;
-    Pawn pl2p5;
-    Pawn pl2p6;
-    Pawn pl2p7;
-    Pawn pl2p8;
-    Rook p1r1;
-    Rook p1r2;
-    Rook p2r1;
-    Rook p2r2;
-    Knight p1kn1;
-    Knight p1kn2;
-    Knight p2kn1;
-    Knight p2kn2;
-    Bishop p1b1;
-    Bishop p1b2;
-    Bishop p2b1;
-    Bishop p2b2;
-    Queen p1q;
-    Queen p2q;
+    std::vector<Pieces*> createdPieces;
     King p1k;
     King p2k;
 };
