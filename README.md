@@ -1,59 +1,67 @@
-# 🚀 Welcome to Project & Portfolio!
-
-This repository will be used to keep track of research and development conducted in this class. Follow the instructions below to get started.
-cos
-### Getting Started
-
-**1.** Review the [About](./docs/01_about/README.md) README and all of the links it provides.
-
-**2.** Review the documentation and [Getting Started](./docs/02_getting_started/README.md) steps in this repository's docs folder.
-
-**3.** Attend the first Live Lecture to see a live setup demo. If you are unable to attend, make sure to watch the archive.
-
-### Next Steps...
-
-After completing the above steps, feel free to begin updating this readme where indicated below. Remember to update this document each week to receive proper credit for the weekly Milestone assignment.
-
-<br>
-
-> ❗️ &nbsp; Now that you have read to this point, go ahead and delete this sentence and everything above it.
-
-<br>
-
 # Project & Portfolio 1
 
-### Student First & Last Name
+### Corbin Marquez
 
-Hello my name is [enter name]. I am a student from [where are you from?]. The purpose of this repository is to practice development using version control. This work will help me begin to build a portfolio of skills and accomplishment that can be shared in the future.
+Hello my name is Corbin Marquez. I am a student from Denver. The purpose of this repository is to practice development using version control. This work will help me begin to build a portfolio of skills and accomplishment that can be shared in the future.
 
 <br>
 
 ## 📢 &nbsp; Weekly Stand Up
 
-Each week I will summarize my milestone activity and progress by writing a stand-up. A stand-up is meant to be a succinct update on how things are going. Use these prompts as a guide on what to write about:
+Week 1 Milestone update Overview:
 
-⚙️ Overview - What I worked on this past week
-<br>
-🌵 Challenges - What problems did I have & how I'm addressing them
-<br>
-🏆 Accomplishments - What is something I "leveled up" on this week
-<br>
-🔮 Next Steps - What I plan to prioritize and do next
+This week I got my piece movement checks functional, updated the board to display as a 5x5 grid, and refactored my code so it is no longer one massive .cpp file.
 
-<br>
+Accomplishments:
 
-### Week 1
+My accomplishments for the week are that I modified the board to be 5x5, added movement checks for the knight, bishop, rook, queen, and king, and fixed the pawn movement.
 
-Replace this paragraph with your stand up for this week. Use the prompts above to summarize your most recent milestone activity and work.
+I also added a switch to toggle between players and integrated it into which moves are available for the selected piece.
 
-### Week 2
+I added mouse input that waits until a mouse click happens within the displayed board, calculates which square was clicked, and returns the coordinates to be used for selecting the piece located on that square.
 
-My next stand up will go here...
+I also refactored my code so it is no longer one giant file.
 
-### Week 3
+Challenges:
 
-Stay tuned, this stand up is coming soon...
+My biggest challenge was handling mouse input because I had only used the Windows API for changing background and foreground colors and setting the console cursor to write text at fixed coordinates.
 
-### Week 4
+This took a lot of research and experimentation with new syntax to get working.
 
-My final stand up...
+Next Steps:
+
+My next steps are integrating the mouse input into piece selection and movement, then connecting my existing player switch so turns automatically change after a move.
+
+That should make the base chess game almost fully functional and allow me to work on the drafting systems and abilities that make it unique.# Docs.
+
+This folder is for miscellaneous documentation.
+
+It's common for repositories to contain documentation provided by the developers or team working on projects together.
+
+In this class you may be asked to work on documentation that can be stored in this folder.
+
+Changelog
+Week 2
+Added
+
+Main menu
+Legal move highlighting
+Fixed
+
+Selecting pieces with no available moves
+Improved
+
+Separated piece classes into individual files
+
+Organized console graphics functions
+
+Removed using namespace std So far this week I have reviewed the instructor and classmate feedback and updated my project board and issues to include removing using namespace std and breaking down my larger functions into their own files. I just made a usability improvement by adding a loading menu prompting for input from the user, before I just had a blank console window waiting for input in place for testing purposes. Moving forward in the week I would like to add instructions and feedback for invalid piece selection. Currently a function I can demonstrate is legal move checking on my pieces. It works by taking the board coordinates of the store piece object, then based on the type of piece that is selected it checks coordinates based on normal chess movement rules. At each coordinate it checks to see if the space is empty, and if another object is stored at those coordinates it checks to see if it is the same player piece or an enemy piece and highlights spaces accordingly. For pieces like bishops it uses a loop to be able to stop searching once encountering another object. (see attached photo) Next steps for this week are, removing using namespace std and adding std:: to my existing code base, separating my larger functions into their own files to improve readability, and then using the mouse input to finally make the base chess functionality playable before moving on to adding the extra features. My Level Up goal is to get my code more organized with the separation into different files and continuation of that style. And increase the user friendliness of my application so it is closer to a working demo by the end of the week by having a more refined menu and visual indicators of what is happening. 1.Progress Update: This week I have made pretty substantial changes to my project, I reorganized my code and split it down into many smaller header and source files, removed using namespace, and connected most of my systems together. So far this has had a noticeable benefit to making modifications to my code without having to jump up and down constantly trying to keep track of what line number I need to go back and reference. 2.Project Progress: Probably the biggest accomplishments of this week was connecting the mouse input to piece selection, adding an alternating turn system, getting captures working and check and move validation. Putting together these systems allow players to take turns selecting a piece, having it highlight the piece and its legal move destinations, and then execute the turn and switch back to the next player. It also accounts for check and requires the player to block, capture, or move their king to safety as in standard chess rules. Also the framework for check should be most of the heavy lifting for checkmate which I'm hoping to add tonight. 3.Usability Improvements: One of the biggest user improvements I have made this week is allowing players to deselect a piece if they decide they no longer want to move that piece or had a misclick. This improves the game by being more forgiving and safeguarding against potential frustrations from accidental input that could ruin their piece development. Additionally I added safe guards to verify the piece selected belongs to the current player (would like to add a display at the top to tell you whose turn it is), and limit piece selection during situations where there may be no legal moves. 4.Level Up Goals: My next goals in the project are to start with user experience things such as when in check scanning for pieces that have legal moves and limiting selection of other pieces. Currently it will not allow the moves but someone who may not realize they are in check may get frustrated, alongside this I also want to highlight your king as an additional visual cue. Then I plan on reusing most of the framework to add checkmate and be able to tie a full game loop into the game. One thing I would like to work on this week is not getting sidetracked with small changes. Over the course of this week I have thought of or noticed things and shifted to doing these tasks before even having a chance to put them on my project board. I would like to update the project board first and add a couple notes and focus on not getting distracted from what I am currently working on. ###Week 3 This week I spent most of my time adding drafting mechanics to my chess game. I broke the system into three sections. The first generates pieces available to purchase and is random but only allows certain pieces to become available depending on the players remaining budget. I personally decided to leave unaffordable pieces in the generation side because I think it adds an extra level of strategy early on in drafting because by the final round you may not be able to purchase a piece and end up with fewer pieces for the game. The second part presents the options to the player and allows them to purchase a piece they can afford or skips their turn if they cannot afford any pieces. The final part alternates turns and allows players to place their pieces anywhere on the board that is not occupied or would put the opponents king in check.
+
+Secondly I made some design changes for both a better user experience as well as game balancing. To start with the user experience changes I now have it highlight the players king when they are in check so that there is no confusion as to why they cannot move a different piece. As well as I created an in game dialog box to give instructions, which players turn it is and other information to help make sure everyone knows what is happening while playing.
+
+For the game balancing I made a few design changes from standard chess. First because the board is only 5x5 and the piece placement can be random, castling would not make any sense. For most pawn movements I encountered the same situation, having your pawn move two squares on turn one with a small board would be a little too powerful. You can also place your pawn on the end row before the game starts and that would mean instant promotions. In theory you could place a piece after to cover your opponents pawn, but because player two acts last there could always be some exploitation of that mechanic. What I am considering doing is when I add spell cards having one that will allow your pawn to move and capture in both directions to keep pawns useful and not limiting them to be just support pieces on the initial setup.
+
+This week I encountered several challenges. When I added the game console I had some issues at first with getting it implemented into my main game loops without it getting offset by other functions or not clearing the right coordinates. It wasn't necessarily a hard solve, but it took some playing around with its timing to make sure it would not affect things. The main issue I hit was after implementing the drafting mechanics I had to redesign how I create pieces. Now that I'm allowing a random amount of different pieces that will not be the same twice, I actually need to create new class instances rather than using pre-defined objects like I started with. Also while placing I encountered some ghosting issues that showed limitations of my current piece placement function and needed incorporations to check the previous coordinates to make sure it was the piece in question as well as doing a full board redraw after a failed move so the old copies would not be hanging around on the board.
+
+My goals going into next week are to consolidate some of my code, remove my testing display code so it does not confuse a user, do more thorough testing for errors in any of my logic systems with edge case situations. And if I have time to incorporate two different spell cards to the game to give it the complete concept that I think will separate it from normal chess and add even more tactical considerations. Week 4
+I finished Chess Wars, my 5x5 version of chess where players can purchase their own pieces and decide where to place them before starting. I got the main gameplay working, including movement, capturing, switching turns, checking for legal moves, and the drafting system. This week I mostly worked on cleaning up my code and fixing some of the smaller issues I still had. One of the bigger changes was combining the purchasing logic for both players into one function instead of having basically the same code written twice. I also fixed the input validation and some problems with how the drafting menu was being displayed. One of the more frustrating things I dealt with this week was the drafting menu. Originally, entering letters instead of numbers could cause the program to get stuck in a loop. After fixing that, I ended up having another issue where incorrect inputs would cause the console to scroll and start writing over the other options. I spent a decent amount of time messing around with the positioning before finally getting it to behave. I think my biggest takeaway from this project is how much easier things are when your code is organized properly. I had quite a few things that worked fine when I originally wrote them, but became unnecessarily complicated when I went back to make changes. I've also gotten a lot more comfortable working with multiple classes and connecting different parts of my program. Looking back at what I started with compared to what I ended up making, it's pretty surprising how much I managed to add in just four weeks. I still want to add the skill cards I originally planned, with abilities like freezing an opponent's pieces or changing how certain pieces can move. I think that could make the game a lot more interesting. I'd also like to eventually give Chess Wars a proper graphical interface instead of keeping it in the console. I have quite a few other ideas for it, but I decided it was better to finish what I already had rather than rush to add more features right before submitting.
