@@ -166,6 +166,62 @@ void Drafting::resetConsole()
 		std::cout << "                                                                                                         ";
 	}
 }
+void Drafting::startPurchase(int currentPlayer)
+{
+	int cost = 0;
+	std::string pieceSelected;
+	//turnery statements to determine which player is being accessed
+	int& budget = (currentPlayer == 1) ? p1Budget : p2Budget;
+	std::vector<int>& pieces = (currentPlayer == 1) ? p1Pieces : p2Pieces;
+	//set position in console
+	setPosition(0, 22);
+	std::cout << "Player " << currentPlayer << ": You have " << budget << " remaining, here are your optioins\n";
+	std::vector<int> round = displayDraftPieces(currentPlayer, p1Budget, p2Budget);
+	std::vector<int> selected = selectPiece(currentPlayer, p1Budget, p2Budget, round);
+	if (selected.empty())
+	{
+		std::cout << "You have not purchased anything \n";
+		return;
+	}
+	if (selected[0] == 1)
+	{
+		cost = 1;
+		pieceSelected = "Pawn";
+	}
+	else if (selected[0] == 2)
+	{
+		cost = 3;
+		pieceSelected = "Knight";
+	}
+	else if (selected[0] == 3)
+	{
+		cost = 3;
+		pieceSelected = "Bishop";
+	}
+	else if (selected[0] == 4)
+	{
+		cost = 5;
+		pieceSelected = "Rook";
+	}
+	else if (selected[0] == 5)
+	{
+		cost = 9;
+		pieceSelected = "Queen";
+	}
+	else
+	{
+		std::cout << "You have not purchased a piece";
+		return;
+	}
+	if (budget < cost)
+	{
+		std::cout << "You cannot afford that piece";
+		return;
+	}
+	budget -= cost;
+	pieces.push_back(selected[0]);
+	std::cout << "You have successfully purchased a " << pieceSelected << " and your remaining budget is " << budget << "\n";
+}
 void Drafting::startDraft()
 {
 	resetConsole();
@@ -176,90 +232,15 @@ void Drafting::startDraft()
 	std::cout << "Be warned, if your budget is too low you may not be able to purchase further pieces, so choose carefully " << "\n";
 	for (int i = 0; i < 5; i++)
 	{
-		setPosition(0, 22);
-		std::cout << "Player 1, you currently have " << p1Budget << " remaining. Here are your options" << "\n";
-		round = displayDraftPieces(1, p1Budget, p2Budget);
-		//need to incoperate setters for purchase vectors;
-		selected = selectPiece(1, p1Budget, p2Budget, round);
-		if (selected[0] == 1)
-		{
-			p1Budget = p1Budget - 1;
-			p1Pieces.push_back(1);
-			std::cout << "You have succesfully purchased a pawn and your remaining budget is " << p1Budget << "\n";
-		}
-		else if (selected[0] == 2)
-		{
-			p1Budget = p1Budget - 3;
-			p1Pieces.push_back(2);
-			std::cout << "You have succesfully purchased a knight and your remaining budget is " << p1Budget << "\n";
-		}
-		else if (selected[0] == 3)
-		{
-			p1Budget = p1Budget - 3;
-			p1Pieces.push_back(3);
-			std::cout << "You have succesfully purchased a bishop and your remaining budget is " << p1Budget << "\n";
-		}
-		else if (selected[0] == 4)
-		{
-			p1Budget = p1Budget - 5;
-			p1Pieces.push_back(4);
-			std::cout << "You have succesfully purchased a rook and your remaining budget is " << p1Budget << "\n";
-		}
-		else if (selected[0] == 5)
-		{
-			p1Budget = p1Budget - 9;
-			p1Pieces.push_back(5);
-			std::cout << "You have succesfully purchased a queen and your remaining budget is " << p1Budget << "\n";
-		}
-		else
-		{
-			std::cout << "You have not purchased anything" << "\n";
-		}
+		startPurchase(1);
 		Sleep(3000);
 		resetConsole();
-		setPosition(0, 22);
-		std::cout << "Player 2, you currently have " << p2Budget << " remaining. Here are your options" << "\n";
-		round = displayDraftPieces(2, p1Budget, p2Budget);
-		//need to incoperate setters for purchase vectors;
-		selected = selectPiece(2, p1Budget, p2Budget, round);
-		if (selected[0] == 1)
-		{
-			p2Budget = p2Budget - 1;
-			p2Pieces.push_back(1);
-			std::cout << "You have succesfully purchased a pawn and your remaining budget is " << p2Budget << "\n";
-		}
-		else if (selected[0] == 2)
-		{
-			p2Budget = p2Budget - 3;
-			p2Pieces.push_back(2);
-			std::cout << "You have succesfully purchased a knight and your remaining budget is " << p2Budget << "\n";
-		}
-		else if (selected[0] == 3)
-		{
-			p2Budget = p2Budget - 3;
-			p2Pieces.push_back(3);
-			std::cout << "You have succesfully purchased a bishop and your remaining budget is " << p2Budget << "\n";
-		}
-		else if (selected[0] == 4)
-		{
-			p2Budget = p2Budget - 5;
-			p2Pieces.push_back(4);
-			std::cout << "You have succesfully purchased a rook and your remaining budget is " << p2Budget << "\n";
-		}
-		else if (selected[0] == 5)
-		{
-			p2Budget = p2Budget - 9;
-			p2Pieces.push_back(5);
-			std::cout << "You have succesfully purchased a queen and your remaining budget is " << p2Budget << "\n";
-		}
-		else
-		{
-			std::cout << "You have not purchased anything" << "\n";
-		}
+		startPurchase(2);
 		Sleep(3000);
 		resetConsole();
 	}
 }
+
 void Drafting::resetDraftV()
 {
 	p1Budget = 20;
