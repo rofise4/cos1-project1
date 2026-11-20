@@ -129,31 +129,54 @@ std::vector<int> Drafting::selectPiece(int currentPlayer, int p1Budget, int p2Bu
 	}
 	//loop to restart until selection is valid, name might me slighly missleading for bool
 	//renamed
-	while (isValid == false)
+	std::string message = "";
+	while (true)
 	{
-		//getting input for selection
+		//clear previous messages
+		setPosition(0, 22);
+		std::cout << "                                                        ";
+		setPosition(0, 28);
+		std::cout << "                                                        ";
+		setPosition(0, 28);
+		//display previous message
+		std::cout << message;
+		setPosition(0, 27);
+		std::cout << "Please select the piece you would like to purchase";
+		std::string input;
+		std::getline(std::cin, input);
 		int attempted;
-		std::cout << "Please enter the number for you selection and press enter: ";
-		std::cin >> attempted;
-		std::cout << "\n";
-
-		//locate is -1 because selection from player is not starting at 0 where the vector starts
+		try 
+		{ 
+			//making sure input is int
+			attempted = std::stoi(input);
+		}
+		catch (...)
+		{
+			message = "Please enter a number";
+			continue;
+		}
 		locate = attempted - 1;
-		//verifying input range
+		//checking range of input
 		if (locate >= 0 && locate <= 2)
 		{
-			if (prices[options[locate] -1] <= budget)
+			//checking if selection is within budget
+			if (prices[options[locate] - 1] <= budget)
 			{
-				//copy contents of options to selected to get piece selected
+				//return selection
 				selected.push_back(options[locate]);
 				return selected;
 			}
 			else
 			{
-
-				//tell them why before looping back
-				std::cout << "Sorry but it appears you cannot afford that piece " << "\n";
+				message = "Sorry you cannot afford that piece ";
 			}
+		}
+		else
+		{
+			//inform player of options
+			/*message solves a text scrolling problem I was experiencing because I can consistantly refresh the line selected so it does not keep moving down after
+			every bad input and error message*/
+			message = "Please enter a number between 1 and 3 ";
 		}
 	}
 }
