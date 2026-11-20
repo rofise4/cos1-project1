@@ -133,15 +133,15 @@ std::vector<int> Drafting::selectPiece(int currentPlayer, int p1Budget, int p2Bu
 	while (true)
 	{
 		//clear previous messages
-		setPosition(0, 22);
-		std::cout << "                                                        ";
+
+
 		setPosition(0, 28);
 		std::cout << "                                                        ";
 		setPosition(0, 28);
 		//display previous message
 		std::cout << message;
 		setPosition(0, 27);
-		std::cout << "Please select the piece you would like to purchase";
+		std::cout << "Please select the piece you would like to purchase: ";
 		std::string input;
 		std::getline(std::cin, input);
 		int attempted;
